@@ -1,0 +1,22 @@
+{
+  "name": "@xaota/ui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js",
+    "./": "./components/"
+  },
+  "type": "module",
+  "scripts": {},
+  "repository": {},
+  "keywords": [],
+  "author": "https://github.com/xaota",
+  "license": "Unlicense",
+  "dependencies": {
+    "javascript-std-lib": "latest"
+  },
+  "devDependencies": {
+    "eslint": "latest"
+  }
+}
