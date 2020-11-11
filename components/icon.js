@@ -58,13 +58,16 @@ const properties = {}
       const icon = node.querySelector('use');
 
       slot.addEventListener('slotchange', _ => {
-        const self = slot.assignedNodes()[0];
-        const value = self instanceof HTMLSlotElement
-          ? self.assignedNodes()[0].nodeValue
-          : self && self.nodeValue;
+        let self = slot;
+        do {
+          self = self.assignedNodes()[0];
+        } while (self instanceof HTMLSlotElement);
+        const value = self?.nodeValue;
         if (!value) return;
+
         const name = value.trim();
         if (!name) return icon.removeAttributeNS('http://www.w3.org/1999/xlink', 'href');
+
         const id = '#' + name;
         icon.setAttributeNS('http://www.w3.org/1999/xlink', 'href', id);
         const g = svg.querySelector(id);

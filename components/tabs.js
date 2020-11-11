@@ -31,10 +31,16 @@ const style = css`
     margin-bottom: -2px;
   }
 
+  #links > label:hover {
+    color: var(--color-primary);
+  }
+
   #links > label.selected {
     background: #f5f5f8;
     border-bottom: 2px solid rgb(221, 97, 39);
     padding-bottom: 6px;
+    box-shadow: 0px 1px 18px 0px rgba(0,0,0,0.12);
+    z-index: 1;
   }
 
   ::slotted(ui-tabs-item) {

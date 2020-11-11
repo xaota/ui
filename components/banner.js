@@ -3,12 +3,15 @@ import Component, {html, css} from '../script/Component.js';
 const style = css`
   :host {
     display: grid;
-    border-bottom: 1px solid #eee;
+    background: #f5f5f8;
     box-sizing: border-box;
     padding: 1em;
     grid-template-areas: "avatar content" ". action";
     grid-template-columns: fit-content(48px);
     grid-column-gap: 10px;
+    box-shadow: /*0px 3px 5px -1px rgba(0,0,0,0.2),
+                0px 6px 10px 0px rgba(0,0,0,0.14),*/
+                0px 1px 18px 0px rgba(0,0,0,0.12);
   }
   slot[name="avatar"] {
     grid-area: avatar;
