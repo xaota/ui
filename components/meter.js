@@ -67,7 +67,7 @@ const style = css`
   }`;
 
 const attributes = {
-  value(root, value) { this.increase = false; }
+  value() {}
 }
 const properties = {}
 // UI.attributes(UIMeter, 'min', 'max', 'value', 'mode', 'color', 'background', 'size', 'angle', 'low', 'high', 'optium', 'stroke', 'speed');
@@ -94,6 +94,9 @@ const speed = 1400;
       if (text) this.innerText = text;
     }
 
+    #increase = true;
+    #animation = null;
+
   /** Создание элемента в DOM (DOM доступен) / mount @lifecycle
     * @param {ShadowRoot} node корневой узел элемента
     * @return {Component} @this {UIMeter} текущий компонент
@@ -101,19 +104,12 @@ const speed = 1400;
     mount(node) {
       super.mount(node, attributes, properties);
 
-      this.increase = true;
-      // console.log('value', value);
       let current = 0;
-      // duration
       cssVariable(this, 'color', colors.join(','));
 
-      // var start = performance.now();
       var previous;
       const frame = callback.bind(this);
-      this.animation = window.requestAnimationFrame(frame);
-      node.addEventListener('click', () => {
-        this.value = 20;
-      });
+      this.#animation = window.requestAnimationFrame(frame);
 
       /** */
       function callback(timestamp) {
@@ -123,21 +119,21 @@ const speed = 1400;
 
         const increment = delay * 100 / speed;
 
-        const value = this.value;
-        let increase = this.increase;
+        const value = parseFloat(this.value);
+        let increase = this.#increase;
 
         if (increase && current >= value || !increase && current <= 0) {
           increase = !increase;
           if (increase) cssVariable(this, 'color', colors.reverse().join(','));
         }
-        this.increase = increase;
+        this.#increase = increase;
+
         current += increase ? increment : -increment / 2;
-        if (current < 0) current = 0;
-        // if (current > value) current = value;
-        // console.log(delay, current, increment);
+        if (current < 0)     current = 0;
+        if (current > value) current = value;
         cssVariable(this, 'fill', current + '%');
 
-        this.animation = window.requestAnimationFrame(frame);
+        this.#animation = window.requestAnimationFrame(frame);
       }
 
       return this;
@@ -145,7 +141,7 @@ const speed = 1400;
 
   /** */
     unmount() {
-      window.cancelAnimationFrame(this.animation);
+      window.cancelAnimationFrame(this.#animation);
       return this;
     }
   }

@@ -102,7 +102,6 @@ const speed = 1400;
       super.mount(node, attributes, properties);
 
       this.increase = true;
-      // console.log('value', value);
       let current = 0;
       // duration
       cssVariable(this, 'color', colors.join(','));
@@ -123,7 +122,7 @@ const speed = 1400;
 
         const increment = delay * 100 / speed;
 
-        const value = this.value;
+        const value = parseFloat(this.value);
         let increase = this.increase;
 
         if (increase && current >= value || !increase && current <= 0) {
@@ -133,8 +132,8 @@ const speed = 1400;
         this.increase = increase;
         current += increase ? increment : -increment / 2;
         if (current < 0) current = 0;
-        // if (current > value) current = value;
-        // console.log(delay, current, increment);
+        if (current > value) current = value;
+
         cssVariable(this, 'fill', current + '%');
 
         this.animation = window.requestAnimationFrame(frame);
