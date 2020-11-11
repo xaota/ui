@@ -37,6 +37,16 @@ const style = css`
   :host([fold]) slot {
     display: none;
     padding: 0;
+  }
+  ::slotted(a) {
+    text-decoration: none;
+    color: var(--color-primary-dark);
+    font-family: var(--font);
+  }
+
+  ::slotted(a:hover) {
+    color: black;
+    /* border-bottom: 1px dashed var(--color-primary-light); */
   }`;
 
 const attributes = {

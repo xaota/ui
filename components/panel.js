@@ -26,7 +26,6 @@ const style = css`
   slot {
     display: block;
     width: 100%;
-    text-align: center;
     font-family: var(--font);
   }
 

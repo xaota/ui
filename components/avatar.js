@@ -51,6 +51,7 @@ const style = css`
     position: absolute;
   }
 
+  :host > img:not([src]),
   :host > img[src$=".svg"] ~ ui-text,
   :host > img[src$=".svg"] ~ ui-icon {
     display: none;
@@ -113,7 +114,7 @@ const properties = {}
       super.mount(node, attributes, properties);
       const slot = node.querySelector('slot');
       slot.addEventListener('slotchange', _ => {
-        const value = letter(this.innerText);
+        const value = letter(this.textContent);
         updateChildrenText(node, 'ui-text', value);
       });
       return this;
