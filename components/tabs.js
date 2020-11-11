@@ -1,27 +1,24 @@
 import Component, {html, css} from '../script/Component.js';
-import UITabsItem       from './tabs-item.js';
+import UITabsItem from './tabs-item.js';
 
 const style = css`
   :host {
     display: block;
-    width: 100%;
     font-family: var(--font);
-    /* box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12); */
   }
 
-  div.root > input[type="radio"] {
+  #root > input[type="radio"] {
     display: none;
   }
 
   #links {
     border: none;
-    border-bottom: 1px solid #eee;
+    border-bottom: 2px solid #f5f5f8;
     box-sizing: border-box;
     font-size: 0;
     font-weight: 100;
     outline: none;
     border-radius: var(--radius);
-    background: white;
     margin-bottom: 0.4em;
   }
 
@@ -31,6 +28,7 @@ const style = css`
     vertical-align: bottom;
     padding: 8px 24px;
     cursor: pointer;
+    margin-bottom: -2px;
   }
 
   #links > label.selected {
@@ -57,10 +55,9 @@ const properties = {}
     static template = html`
       <template>
         <style>${style}</style>
-        <div class="root"><div id="links"></div></div>
+        <div id="root"><div id="links"></div></div>
         <slot></slot>
       </template>`;
-
 
   /** Создание элемента в DOM (DOM доступен) / mount @lifecycle
     * @param {ShadowRoot} node корневой узел элемента
@@ -68,24 +65,26 @@ const properties = {}
     */
     mount(node) {
       super.mount(node, attributes, properties);
-      const root = node.querySelector('div.root');
+      const root = node.querySelector('#root');
       const links = root.querySelector('#links');
 
-      const tabs  = node.querySelector('slot').assignedNodes().filter(e => e.caption);
-      tabs.forEach(item => {
-        const caption = item.name || item.caption;
-        const radio = createRadio(caption);
-        prepend(root, radio);
-        const label = createLabel(caption, item.caption);
-        links.appendChild(label);
-        // items.appendChild(item.cloneNode(true));
-        radio.addEventListener('change', _ => changeTab(links, tabs, caption));
-      });
+      node.addEventListener('slotchange', () => {
+        links.querySelectorAll('*').forEach(e => e.remove());
 
-      const selected = tabs.findIndex(e => e.classList.contains('selected'))[0] || 0;
-      if (!tabs[selected]) return this;
-      const caption = tabs[selected].name || tabs[selected].caption;
-      changeTab(links, tabs, caption);
+        const tabs = node.querySelector('slot').assignedNodes().filter(e => e.caption);
+        tabs.forEach(item => {
+          const caption = item.name || item.caption;
+          const radio = createRadio(caption);
+          const label = createLabel(caption, item.caption);
+
+          root.insertBefore(radio, root.firstChild);
+          links.appendChild(label);
+
+          radio.addEventListener('change', () => this.select(caption));
+        });
+
+        this.select();
+      });
       return this;
     }
 
@@ -94,7 +93,16 @@ const properties = {}
       const node = this.shadowRoot;
       const links = node.querySelector('#links');
       const tabs  = node.querySelector('slot').assignedNodes().filter(e => e.caption);
-      changeTab(links, tabs, name);
+
+      const index = tabs.findIndex(e => e.classList.contains('selected'));
+      const selected = index === -1 ? 0 : index;
+
+      const tab = changeTab(links, tabs, name, selected);
+      if (tab) {
+        tabs[selected].event('select', {show: false})
+        tab.event('select', {show: true});
+        this.event('change', {tab: tabs[tab], index: tab});
+      }
     }
   }
 
@@ -102,16 +110,20 @@ Component.init(UITabs, 'ui-tabs', {attributes, properties});
 
 // #region [Private]
 /** */
-  function changeTab(links, tabs, caption) {
-    const selector = `[for="tab-${caption.replace(/\s+/, '-')}"]`;
+  function changeTab(links, tabs, name, selected) {
+    if (!tabs[selected]) return;
+    if (!name) name = tabs[selected].name || tabs[selected].caption;
 
-    onceClass([...links.children], links.querySelector(selector), 'selected');
-    onceClass(tabs,  tabs.filter(e => (e.name || e.caption) === caption)[0], 'selected');
-  }
+    const selector = `[for="tab-${name.replace(/\s+/, '-')}"]`;
+    const caption = tabs[selected].name || tabs[selected].caption;
 
-/** */
-  function prepend(root, node) {
-    return root.insertBefore(node, root.firstChild); // node?
+    const link = links.querySelector(selector);
+    const tab = tabs.findIndex(e => (e.name || e.caption) === name);
+
+    const a = onceClass([...links.children], link, 'selected');
+    const b = onceClass(tabs, tabs[tab], 'selected');
+
+    if (a && b && name !== caption) return tabs[tab];
   }
 
 /** */
@@ -134,6 +146,9 @@ Component.init(UITabs, 'ui-tabs', {attributes, properties});
 /** */
   function onceClass(items, item, ...classNames) {
     items.forEach(node => node.classList.remove(...classNames));
+
+    if (!item) return false;
     item.classList.add(...classNames);
+    return true;
   }
 // #endregion

@@ -2,8 +2,10 @@ import Component, {html, css} from '../script/Component.js';
 
 const style = css`
   :host {
-    width: 100%;
+    display: block;
     font-family: var(--font);
+    padding: 0;
+    margin: 0;
   }
   slot {
     display: block;
@@ -19,6 +21,7 @@ const properties = {}
 
 /** {UITabsItem} @class
   * @description Отображение блока простого текста
+  * @todo: onSelect event
   */
   export default class UITabsItem extends Component {
     static template = html`
