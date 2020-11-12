@@ -121,7 +121,10 @@ const style = css`
     margin-right: -1.2em;
   }`;
 
-const attributes = {}
+const attributes = {
+  mode() {},
+  text() {}
+}
 const properties = {
   disabled() {}
 }
@@ -143,9 +146,11 @@ const properties = {
       super();
       if (content === undefined) return;
       if (typeof content !== 'object') content = {label: content};
-      if ('label' in content) this.innerHTML = content.label;
-      if ('mode'  in content) this.mode = content.mode;
-      if ('text'  in content) this.text = content.text;
+
+      if ('label' in content) this.innerText = content.label;
+      if ('mode'  in content && content.mode) this.mode = content.mode;
+      if ('text'  in content && content.text) this.text = content.text;
+      if ('disabled' in content && content.disabled === true) this.disabled = true;
     }
 
   /** Создание элемента в DOM (DOM доступен) / mount @lifecycle

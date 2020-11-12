@@ -1,4 +1,5 @@
 import Component, {html, css} from '../script/Component.js';
+import {clear} from '../script/DOM.js';
 import UITabsItem from './tabs-item.js';
 
 const style = css`
@@ -75,7 +76,7 @@ const properties = {}
       const links = root.querySelector('#links');
 
       node.addEventListener('slotchange', () => {
-        links.querySelectorAll('*').forEach(e => e.remove());
+        clear(links);
 
         const tabs = node.querySelector('slot').assignedNodes().filter(e => e.caption);
         tabs.forEach(item => {

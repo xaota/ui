@@ -62,6 +62,13 @@
     return getComputedStyle(element).getPropertyValue(name);
   }
 
+/**
+  */
+  export function clear(node) {
+    while (node.firstChild) node.firstChild.remove();
+    return node;
+  }
+
 /** */
   export function pointerOffset(element, event) {
     const target = event.target;

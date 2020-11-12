@@ -1,6 +1,7 @@
 import Component, {html, css, url} from '../script/Component.js';
-import {updateChildrenElement, pointerOffset} from '../script/DOM.js';
+import {updateChildrenElement, pointerOffset, updateChildrenText} from '../script/DOM.js';
 import {drawRipple} from '../script/Material.js';
+import UIIcon from './icon.js';
 
 const style = css`
   @import "${url('../style/color.css', import.meta.url)}";
@@ -18,7 +19,7 @@ const style = css`
 
   div.root {
     user-select: none;
-    font: normal 1em / normal Tahoma, sans-serif;
+    font: var(--font);
     transition: 0.3s all ease;
     position: relative;
     overflow: hidden;
@@ -45,7 +46,7 @@ const style = css`
     padding: 1.2em 0.6em 1.2em var(--left);
     background: none;
     border: none;
-    font: normal 1em / normal Tahoma, sans-serif;
+    font: var(--font);
     transition: 0.2s all ease;
   }
 
@@ -60,14 +61,13 @@ const style = css`
     pointer-events: none;
     transition: 0.2s all ease;
     top: 1.5em;
-    font: normal 1em / normal Tahoma, sans-serif;
+    font: var(--font);
     white-space: nowrap;
   }
 
   div.root > input:focus + label, div.root > input:valid + label {
     font-size: .8em;
     color: var(--stroke-active);
-    /* left: 0.6em; */
     top: .2em;
   }
 
@@ -84,8 +84,17 @@ const style = css`
   /* ::-moz-placeholder          { color: blue; } // Firefox 19+
   :-ms-input-placeholder      { color: blue; } */
 
-  :host([icon]:not([right])) div.root {
-    background-position: left 0.3em top 1.4em;
+  :host(:not([icon])) ui-icon { /* , ui-icon:empty */
+    display: none;
+  }
+  :host([icon]) ui-icon {
+    display: block;
+    position: absolute;
+    pointer-events: none;
+  }
+  :host([icon]:not([right])) div.root > ui-icon {
+    left: 0.3em;
+    top: 1.4em;
   }
   :host([icon]:not([right])) div.root > input {
     padding-left: 2em;
@@ -94,8 +103,9 @@ const style = css`
     left: 2.3em;
   }
 
-  :host([icon][right]) div.root {
-    background-position: right 0.3em top 1.4em;
+  :host([icon][right]) div.root > ui-icon {
+    right: 0.3em;
+    top: 1.4em;
   }
   :host([icon][right]) div.root > input {
     padding-right: 2em;
@@ -156,7 +166,7 @@ const style = css`
 const attributes = {
   value(root, value) { updateChildrenElement(root, 'input', 'value', value) },
   placeholder(root, value) { updateChildrenElement(root, 'input', 'placeholder', value) },
-  icon(root, value) { setIcon(value, root) }
+  icon(root, value) { updateChildrenText(root, 'ui-icon', value) }
 }
 const properties = {}
 
@@ -170,6 +180,7 @@ const properties = {}
         <div class="root">
           <input required />
           <label><slot></slot></label>
+          <ui-icon></ui-icon>
         </div>
       </template>`;
 
@@ -187,7 +198,6 @@ const properties = {}
     */
     mount(node) {
       super.mount(node, attributes, properties);
-      const input = node.querySelector('input');
 
       const root = node.querySelector('div.root');
       root.addEventListener('click', event => {
@@ -195,6 +205,8 @@ const properties = {}
         root.style.setProperty('--position', position.x + 'px');
         drawRipple.call(root, position);
       });
+
+      const input = node.querySelector('input');
       input.addEventListener('blur', _ => {
         root.style.setProperty('--position', '50%');
       });
@@ -203,18 +215,9 @@ const properties = {}
       input.addEventListener('change', _ => this.event('change'));
       input.addEventListener('keydown', e => { if (e.key === 'Enter') return this.event('enter') });
       this.addEventListener('focus', _ => input.focus());
+
       return this;
     }
   }
 
 Component.init(UIInput, 'ui-input', {attributes, properties});
-
-// #region [Private]
-/** */
-  function setIcon(icon, root) {
-    if (!root || !root.style) return;
-    if (!icon) return root.style.backgroundImage = 'none';
-    // const href = UIIcon.src(icon);
-    // root.style.backgroundImage = `url(${href.toString()})`;
-  }
-// #endregion

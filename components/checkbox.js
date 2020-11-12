@@ -1,5 +1,6 @@
 import Component, {html, css} from '../script/Component.js';
 import {updateChildrenProperty, updateChildrenElement} from '../script/DOM.js';
+import UIIcon from './icon.js';
 
 const style = css`
   :host {
@@ -9,6 +10,7 @@ const style = css`
 
   label {
     display: flex;
+    position: relative;
   }
 
   slot {
@@ -42,8 +44,19 @@ const style = css`
     border-color: #d5d5d5;
   }
 
-  #checkbox:checked + label:before {
-    background: #6fbeb5 url('../../icons/light/check.svg') center center;
+  #checkbox + label > ui-icon {
+    position: absolute;
+    left: 0;
+    transform: scale(0.8);
+    opacity: 0;
+    transition: ease opacity 0.3s;
+  }
+  :host([right]) #checkbox + label > ui-icon {
+    left: auto;
+    right: -2px;
+  }
+  #checkbox:checked + label > ui-icon {
+    opacity: 1;
   }
 
   #checkbox:disabled + label:before {
@@ -75,7 +88,10 @@ const properties = {
       <template>
         <style>${style}</style>
         <input type="checkbox" id="checkbox" hidden />
-        <label for="checkbox"><slot></slot></label>
+        <label for="checkbox">
+          <ui-icon>check</ui-icon>
+          <slot></slot>
+        </label>
       </template>`;
 
   /** Создание компонента {UICheckbox} @constructor

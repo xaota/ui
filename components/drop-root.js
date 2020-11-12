@@ -125,7 +125,7 @@ const properties = {}
 
       // root.addEventListener('click', _ => drop.forEach(e => e.style.display = 'block'), {once: true});
       slot.addEventListener('click', _ => {
-        console.log('slot click');
+        // console.log('slot click');
         drop.visible = !drop.visible;
         // setTimeout(() => drop.visible = false, 400);
       });

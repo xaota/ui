@@ -1,6 +1,7 @@
 import Component, {html, css} from '../script/Component.js';
-import {updateChildrenElement, pointerOffset} from '../script/DOM.js';
+import {updateChildrenElement, pointerOffset, updateChildrenText} from '../script/DOM.js';
 import {drawRipple} from '../script/Material.js';
+import UIIcon from './icon.js';
 
 const style = css`
   :host {
@@ -21,7 +22,7 @@ const style = css`
   div.root {
     box-sizing: border-box;
     user-select: none;
-    font: normal 1em / normal Tahoma, sans-serif;
+    font: var(--font);
     transition: 0.3s all ease;
     position: relative;
     overflow: hidden;
@@ -43,7 +44,7 @@ const style = css`
   }
 
   div.root > textarea {
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
     outline: none;
     display: block;
     width: 100%;
@@ -52,7 +53,7 @@ const style = css`
     padding: 1.2em 0.6em;
     background: none;
     border: none;
-    font: normal 1em / normal Tahoma, sans-serif;
+    font: var(--font);
     transition: 0.2s all ease;
     resize: none;
   }
@@ -68,7 +69,7 @@ const style = css`
     pointer-events: none;
     transition: 0.2s all ease;
     top: 1.5em;
-    font: normal 1em / normal Tahoma, sans-serif;
+    font: var(--font);
   }
 
   div.root > textarea:focus + label, div.root > textarea:valid + label {
@@ -88,8 +89,17 @@ const style = css`
   :-ms-input-placeholder      { color: blue; }
   */
 
-  :host([icon]:not([right])) div.root {
-    background-position: left 0.3em top 1.4em;
+ :host(:not([icon])) ui-icon { /* , ui-icon:empty */
+    display: none;
+  }
+  :host([icon]) ui-icon {
+    display: block;
+    position: absolute;
+    pointer-events: none;
+  }
+  :host([icon]:not([right])) div.root > ui-icon {
+    left: 0.3em;
+    top: 1.4em;
   }
   :host([icon]:not([right])) div.root > textarea {
     padding-left: 2em;
@@ -98,8 +108,9 @@ const style = css`
     left: 2.3em;
   }
 
-  :host([icon][right]) div.root {
-    background-position: right 0.3em top 1.4em;
+  :host([icon][right]) div.root > ui-icon {
+    right: 0.3em;
+    top: 1.4em;
   }
   :host([icon][right]) div.root > textarea {
     padding-right: 2em;
@@ -163,7 +174,7 @@ const attributes = {
   /** */
     placeholder(root, value) { updateChildrenElement(root, 'textarea', 'placeholder', value) },
   /** */
-    icon(root, value) { setIcon(value, root) }
+    icon(root, value) { updateChildrenText(root, 'ui-icon', value) }
   }
 const properties = {
   /** */
@@ -182,6 +193,7 @@ const properties = {
         <div class="root">
           <textarea required></textarea>
           <label><slot></slot></label>
+          <ui-icon></ui-icon>
         </div>
       </template>`;
 
@@ -199,12 +211,14 @@ const properties = {
     */
     mount(node) {
       super.mount(node, attributes, properties);
+
       const root = node.querySelector('div.root');
       root.addEventListener('click', event => {
         const position = pointerOffset(root, event);
         root.style.setProperty('--position', position.x + 'px');
         drawRipple.call(root, position);
       });
+
       const textarea = node.querySelector('div.root > textarea');
       textarea.addEventListener('blur', _ => {
         root.style.setProperty('--position', '50%');
@@ -213,18 +227,9 @@ const properties = {
       textarea.addEventListener('input', _ => this.value = textarea.value);
       textarea.addEventListener('change', _ => this.event('change'));
       this.addEventListener('focus', _ => textarea.focus());
+
       return this;
     }
   }
 
 Component.init(UITextarea, 'ui-textarea', {attributes, properties});
-
-// #region [Private]
-/** / setIcon */
-  function setIcon(icon, root) {
-    if (!root || !root.style) return;
-    if (!icon) return root.style.backgroundImage = 'none';
-    const href = UIIcon.src(icon);
-    root.style.backgroundImage = `url(${href.toString()})`;
-  }
-// #endregion
