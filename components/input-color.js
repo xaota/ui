@@ -1,6 +1,6 @@
 import Component, {html, css} from '../script/Component.js';
 import UIPaper    from './paper.js';
-import UIDropRoot from './drop-root.js';
+import UIDrop     from './drop.js';
 import UITabs     from './tabs.js';
 import UITabsItem from './tabs-item.js';
 
@@ -166,21 +166,31 @@ const properties = {}
     static template = html`
       <template>
         <style>${style}</style>
-        <ui-drop-root outset y="top">
-        <!-- todo: ui-input -->
-        <div class="root">
-          <input required />
-          <label><slot></slot></label>
-        </div>
-        <ui-tabs slot="drop">
-          <ui-tabs-item caption="палитра" class="selected">content 1</ui-tabs-item>
-          <ui-tabs-item caption="схема">
-            <ui-paper>
-              <input type="color" />
-            </ui-paper>
-          </ui-tabs-item>
-        </ui-tabs>
-      </ui-drop-root>
+        <ui-drop outset y="top" action>
+          <!-- todo: ui-input -->
+          <div class="root">
+            <input required />
+            <label><slot></slot></label>
+          </div>
+
+          <div slot="drop">
+            <ui-tabs>
+              <ui-tabs-item caption="палитра" name="palette" class="selected">
+                <ui-paper>
+                  content 1
+                </ui-paper>
+              </ui-tabs-item>
+
+              <ui-tabs-item caption="схема" name="scheme">
+                <ui-paper>
+                  <input type="color" />
+                </ui-paper>
+              </ui-tabs-item>
+            </ui-tabs>
+
+            <ui-button id="change">закрыть</ui-button>
+          </div>
+        </ui-drop>
       </template>`;
 
   /** Создание компонента {UIInputColor} @constructor
@@ -196,7 +206,13 @@ const properties = {}
     * @return {Component} @this {UIInputColor} текущий компонент
     */
     mount(node) {
-      return super.mount(node, attributes, properties);
+      super.mount(node, attributes, properties);
+      /** @type UIDrop */
+      const drop = node.querySelector('ui-drop');
+      const change = node.querySelector('#change');
+
+      change.addEventListener('click', () => drop.close());
+      return this;
     }
   }
 

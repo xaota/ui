@@ -49,4 +49,4 @@ const properties = {}
     }
   }
 
-Component.init(UIFigure, 'ui-text', {attributes, properties});
+Component.init(UIFigure, 'ui-figure', {attributes, properties});

@@ -1,5 +1,4 @@
 import Component, {html, css} from '../script/Component.js';
-// import {cssVariable} from '../script/DOM.js';
 import UIMeter from './meter.js';
 
 const style = css`
@@ -15,10 +14,12 @@ const style = css`
     --color: var(--color-details);
   }`;
 
-const attributes = {}
-const properties = {}
-// UI.attributes(UILoader, 'min', 'max', 'value', 'mode', 'color', 'background', 'size', 'angle', 'low', 'high', 'optium', 'stroke', 'speed');
-// UI.properties(UILoader, 'disabled', 'linear', 'fill', 'reverse');
+const attributes = {
+  // 'min', 'max', 'value', 'mode', 'color', 'background', 'size', 'angle', 'low', 'high', 'optium', 'stroke', 'speed'
+}
+const properties = {
+  // 'disabled', 'linear', 'fill', 'reverse'
+}
 
 /** {UILoader} @class
   * @description Отображение блока простого текста
@@ -27,7 +28,7 @@ const properties = {}
     static template = html`
       <template>
         <style>${style}</style>
-        <ui-meter min="0" max="100" value="100"></ui-meter>
+        <ui-meter min="0" max="100" value="100" />
       </template>`;
 
   /** Создание элемента в DOM (DOM доступен) / mount @lifecycle

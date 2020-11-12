@@ -83,7 +83,7 @@ const speed = 1400;
     static template = html`
       <template>
         <style>${style}</style>
-        <meter></meter>
+        <meter />
       </template>`;
 
   /** Создание компонента {UIProgress} @constructor

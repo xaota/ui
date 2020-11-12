@@ -14,7 +14,6 @@ const attributes = {
     createContent.call(this, node, pages, value);
   }
 };
-
 const properties = {};
 
 const style = css`

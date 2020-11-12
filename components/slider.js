@@ -127,7 +127,7 @@ const properties = {}
     }
   }
 
-Component.init(UISlider, 'ui-text', {attributes, properties});
+Component.init(UISlider, 'ui-slider', {attributes, properties});
 
 // #region [Private]
 /** */

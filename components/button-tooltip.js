@@ -20,7 +20,7 @@ const attributes = {
     y(root, value) {updateChildrenAttribute(root, 'ui-tooltip', 'y', value)}
   }
 const properties = {
-    disabled(root, value) {updateChildrenProperty(root, 'ui-button',  'disabled', value)}
+    disabled(root, value) {updateChildrenProperty(root, 'ui-button', 'disabled', value)}
   }
 
 /** {UIButtonTooltip} @class

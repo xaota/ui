@@ -1,5 +1,5 @@
 import Component, {html, css} from '../script/Component.js';
-import {cssVariable} from '../script/DOM.js';
+import {cssVariable, updateChildrenAttribute} from '../script/DOM.js';
 
 const style = css`
   :host {
@@ -67,11 +67,14 @@ const style = css`
   }`;
 
 const attributes = {
-  value() {}
+  min(root, value) {updateChildrenAttribute(root, 'meter', 'min', value)},
+  max(root, value) {updateChildrenAttribute(root, 'meter', 'max', value)},
+  value(root, value) {updateChildrenAttribute(root, 'meter', 'value', value)}
+  // 'mode', 'color', 'background', 'size', 'angle', 'low', 'high', 'optium', 'stroke', 'speed'
 }
-const properties = {}
-// UI.attributes(UIMeter, 'min', 'max', 'value', 'mode', 'color', 'background', 'size', 'angle', 'low', 'high', 'optium', 'stroke', 'speed');
-// UI.properties(UIMeter, 'disabled', 'linear', 'fill', 'reverse');
+const properties = {
+  // 'disabled', 'linear', 'fill', 'reverse'
+}
 
 const colors = ['lime', 'aqua', 'blue', 'magenta'];
 const speed = 1400;
@@ -83,16 +86,8 @@ const speed = 1400;
     static template = html`
       <template>
         <style>${style}</style>
-        <meter></meter>
+        <meter />
       </template>`;
-
-  /** Создание компонента {UIMeter} @constructor
-    * @param {string?} text содержимое элемента
-    */
-    constructor(text) {
-      super();
-      if (text) this.innerText = text;
-    }
 
     #increase = true;
     #animation = null;

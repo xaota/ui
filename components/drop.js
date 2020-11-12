@@ -1,57 +1,133 @@
 import Component, {html, css} from '../script/Component.js';
+import {updateChildrenProperty} from '../script/DOM.js';
+import UIDropItem from './drop-item.js';
 
 const style = css`
   :host {
-    --duration: 0.2s;
-
     display: block;
-    /* box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12); */
-    box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
-    border: none;
-    box-sizing: border-box;
-    font-size: 1.1em;
-    font-weight: 100;
-    outline: none;
-    border-radius: var(--radius);
-    background: white;
-    z-index: 2;
-
-    transform: scaleY(0);
-    transform-origin: top;
-    transition: var(--duration) ease transform;
-    transition-delay: var(--duration);
+    position: relative;
+    --indent: 8px;
   }
 
-  :host-context([y="bottom"]) {
-    transform-origin: bottom;
+  :host([inline]) {
+    display: inline-block;
   }
 
-  :host([visible]) {
-    /* display: block; */
-    transform: scaleY(1);
-  }`;
+  slot {
+    display: block;
+  }
+
+  ui-drop-item {
+    position: absolute;
+    /* transform: scaleY(0); */
+    /* top: var(--indent);
+    left: var(--indent); */
+  }
+
+  :host slot:not([name]):focus-within ui-drop-item {
+    /* transform: scaleY(1); */
+  }
+
+  /* #region [Layout] Положение подсказки @TODO: */
+  /* outset (default) */
+  :host ui-drop-item, :host([y="top"]) ui-drop-item {
+    top: calc(var(--indent));
+  }
+  :host([y="bottom"]) ui-drop-item {
+    top: auto;
+    bottom: var(--indent);
+  }
+  /*
+  :host([y="center"]) ui-drop-item {
+    top: 50%;
+    bottom: auto;
+    transform: translateY(-50%);
+  }
+
+  :host ui-drop-item, :host([x="center"]) ui-drop-item {
+    left: 50%;
+    transform: translateX(-50%);
+  }*/
+  :host([x="left"]) ui-drop-item {
+    left: auto;
+    right: var(--indent);
+    /* transform: none; */
+  }
+  /* :host([x="right"]) ui-drop-item {
+    left: calc(100% + var(--indent));
+    transform: none;
+  } */
+  /*
+  :host([x="center"][y="center"]) ui-drop-item {
+    transform: translate(-50%, -50%);
+  }
+  :host([x="right"][y="center"]) ui-drop-item,
+  :host([x="left"][y="center"]) ui-drop-item {
+    transform: translate(0, -50%)
+  } */
+
+  /* OUTSET */
+  :host([outset]) ui-drop-item, :host([outset][y="top"]) ui-drop-item {
+    top: calc(100% + var(--indent));
+    bottom: auto;
+  }
+  :host([outset][y="bottom"]) ui-drop-item {
+    bottom: calc(100% + var(--indent));
+    top: auto;
+  }
+  /*:host([outset][y="center"]) ui-drop-item {
+    top: 50%;
+    bottom: auto;
+    transform: translateY(-50%);
+  }
+
+  :host([outset][x="left"]) ui-drop-item {
+    left: var(--indent);
+    right: auto;
+    // transform: none;
+  }
+  :host([outset][x="right"]) ui-drop-item {
+    left: auto;
+    right: var(--indent);
+    // transform: none;
+  }
+
+  :host([outset][x="center"][y="center"]) ui-drop-item {
+    transform: translate(-50%, -50%);
+  } */
+  /* #endregion */`;
 
 const attributes = {}
 const properties = {
-  visible() {} // show
+  disabled() {},
+  action() {},
+  visible(root, value) {updateChildrenProperty(root, 'ui-drop-item', 'visible', value)}
 }
 
-/** {UIDrop} @class
-  * @description Отображение блока простого текста
+/** Drop {UIDrop} @class @ui @component @tag <ui-drop />
+  * @description Выпадающий блок
   */
   export default class UIDrop extends Component {
     static template = html`
       <template>
         <style>${style}</style>
+
         <slot></slot>
+
+        <ui-drop-item>
+          <slot name="drop"></slot>
+        </ui-drop-item>
       </template>`;
 
   /** Создание компонента {UIDrop} @constructor
-    * @param {string?} text содержимое элемента
+    * @param {{visible?: boolean, disabled?: boolean, action?: boolean}} props свойства выпадающего блока
     */
-    constructor(text) {
+    constructor(props) {
       super();
-      if (text) this.innerText = text;
+      if (!props) return;
+      if (props.visible)  this.visible = true;
+      if (props.action)   this.action = true;
+      if (props.disabled) this.disabled = true;
     }
 
   /** Создание элемента в DOM (DOM доступен) / mount @lifecycle
@@ -60,7 +136,34 @@ const properties = {
     */
     mount(node) {
       super.mount(node, attributes, properties);
-      // this.style.transition = '0.2s ease transform';
+      const drop = node.querySelector('ui-drop-item');
+      const slot = node.querySelector('slot:not([name])');
+
+      slot.addEventListener('focusin', () => {
+        if (this.disabled) return;
+        this.open();
+      });
+
+      this.addEventListener('focusout', () => {
+        if (this.action || this.disabled) return;
+        this.close();
+      });
+
+      return this;
+    }
+
+    open() {
+      this.visible = true;
+      return this;
+    }
+
+    close() {
+      this.visible = false;
+      return this;
+    }
+
+    toggle() {
+      this.visible = !this.visible;
       return this;
     }
   }

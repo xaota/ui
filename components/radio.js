@@ -43,6 +43,11 @@ const style = css`
     transition: .3s ease all;
   }
 
+  #checkbox:disabled ~ label {
+    background: #d5d5d5;
+    pointer-events: none;
+  }
+
   #checkbox:checked ~ label:after {
     opacity: 1;
     margin: 2px;

@@ -3,17 +3,12 @@ import {updateChildrenText} from '../script/DOM.js';
 
 import UIInput    from './input.js';
 import UIDrop     from './drop.js';
-import UIDropRoot from './drop-root.js';
 import UIList     from './list.js';
 import UIListItem from './list-item.js';
 
 const style = css`
   :host {
     display: inline-block;
-  }
-
-  ui-drop-root {
-    display: block;
   }
 
   ui-input {
@@ -33,12 +28,12 @@ const properties = {}
     static template = html`
       <template>
         <style>${style}</style>
-        <ui-drop-root>
+        <ui-drop>
           <ui-input></ui-input>
           <ui-list slot="drop">
             <slot></slot>
           </ui-list>
-        </ui-drop-root>
+        </ui-drop>
       </template>`;
 
   // /** Создание компонента {UISelect} @constructor
