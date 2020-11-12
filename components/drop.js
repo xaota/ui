@@ -2,6 +2,17 @@ import Component, {html, css} from '../script/Component.js';
 import {updateChildrenProperty} from '../script/DOM.js';
 import UIDropItem from './drop-item.js';
 
+/**
+  * @typedef {Object} UIDropProps
+  * @property {boolean} [visible]  показ выпадающего блока
+  * @property {boolean} [disabled] отмена пользовательского управления
+  * @property {boolean} [action]   отмена закрытия при потере фокуса
+  * @property {boolean} [outside]  выпадающий блок не перекрывает элемент
+  * @property {boolean} [inline]   для использования в строчных элементах
+  * @property {number}  [x]        положение выпадающего блока по горизонтали
+  * @property {number}  [y]        положение выпадающего блока по вертикали
+  */
+
 const style = css`
   :host {
     display: block;
@@ -97,10 +108,15 @@ const style = css`
   } */
   /* #endregion */`;
 
-const attributes = {}
+const attributes = {
+  x() {},
+  y() {},
+}
 const properties = {
   disabled() {},
   action() {},
+  outside() {},
+  inline() {},
   visible(root, value) {updateChildrenProperty(root, 'ui-drop-item', 'visible', value)}
 }
 
@@ -120,14 +136,19 @@ const properties = {
       </template>`;
 
   /** Создание компонента {UIDrop} @constructor
-    * @param {{visible?: boolean, disabled?: boolean, action?: boolean}} props свойства выпадающего блока
+    * @param {UIDropProps} [props] свойства выпадающего блока
     */
     constructor(props) {
       super();
       if (!props) return;
-      if (props.visible)  this.visible = true;
-      if (props.action)   this.action = true;
+
+      if (props.visible)  this.visible  = true;
+      if (props.action)   this.action   = true;
       if (props.disabled) this.disabled = true;
+      if (props.outside)  this.outside  = true;
+      if (props.inline)   this.inline   = true;
+      if (props.x) this.x = props.x;
+      if (props.y) this.y = props.y;
     }
 
   /** Создание элемента в DOM (DOM доступен) / mount @lifecycle
@@ -152,16 +173,25 @@ const properties = {
       return this;
     }
 
+  /** Показ выпадающего блока
+    * @return {UIDrop} текущий компонент @this
+    */
     open() {
       this.visible = true;
       return this;
     }
 
+  /** Скрытие выпадающего блока
+    * @return {UIDrop} текущий компонент @this
+    */
     close() {
       this.visible = false;
       return this;
     }
 
+  /** Смена состояния выпадающего блока (показ / скрытие)
+    * @return {UIDrop} текущий компонент @this
+    */
     toggle() {
       this.visible = !this.visible;
       return this;
