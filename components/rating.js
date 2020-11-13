@@ -65,10 +65,10 @@ const style = css`
   }`;
 
 const attributes = {
-  value(root, value) { setValue(root, parseFloat(value)) }
+  value(root, value) { this.store({value: parseFloat(value)}) }
 }
 const properties = {
-  disabled(root, value) {}
+  disabled() {}
 }
 
 /** {UIRating} @class
@@ -79,7 +79,6 @@ const properties = {
       <template>
         <style>${style}</style>
         <div class="root"></div>
-        <!-- <slot></slot> -->
       </template>`;
 
   /** Создание компонента {UIRating} @constructor
@@ -98,6 +97,11 @@ const properties = {
       super.mount(node, attributes, properties);
       this.paint();
       return this;
+    }
+
+    render(node) {
+      const {value = 0} = this.store();
+      setValue(node, value);
     }
 
   /** */
@@ -122,6 +126,7 @@ const properties = {
           div.appendChild(star);
           div.appendChild(half);
           div.appendChild(active);
+
           root.appendChild(div);
           if (!this.disabled) div.addEventListener('click', e => {
             this.value = index + 1;
@@ -130,6 +135,7 @@ const properties = {
             e.stopPropagation();
             return false;
           });
+
           return div;
         }, root);
 

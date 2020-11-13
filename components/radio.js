@@ -4,31 +4,48 @@ import {updateChildrenProperty, updateChildrenElement} from '../script/DOM.js';
 const style = css`
   :host {
     display: inline-block;
-  }
-
-  slot {
-    display: inline;
+    vertical-align: middle;
   }
 
   label {
+    display: flex;
     position: relative;
+  }
+
+  slot {
+    font-family: var(--font);
+  }
+
+  label:before {
     display: block;
+    /* position: relative; */
+    content: '';
     height: 20px;
     width: 20px;
     background: none;
     border: 1px solid #898989;
     border-radius: 50%;
-    cursor: pointer;
     transition: all 0.3s ease;
+    cursor: pointer;
   }
 
-  label:hover {
-    border-color: #d5d5d5;
+  :host([right]) label {
+    flex-direction: row-reverse;
   }
 
-  #checkbox:checked ~ label {
+  :host([right]) label:before {
+    margin-left: 0.4em;
+  }
+  :host(:not([right])) label:before {
+    margin-right: 0.4em;
+  }
+
+  #checkbox:checked ~ label:before {
     border-color: #6fbeb5;
-    /* box-shadow: inset 0 0 0 1px #898989; */
+  }
+
+  label:hover:before {
+    border-color: #d5d5d5;
   }
 
   #checkbox ~ label:after {
@@ -41,11 +58,15 @@ const style = css`
     background: #6fbeb5;
     opacity: 0;
     transition: .3s ease all;
+    position: absolute;
+    cursor: pointer;
+    top: 1px;
+    left: 1px;
   }
 
-  #checkbox:disabled ~ label {
-    background: #d5d5d5;
-    pointer-events: none;
+  :host([right]) #checkbox ~ label:after {
+    left: auto;
+    right: 1px;
   }
 
   #checkbox:checked ~ label:after {
@@ -53,13 +74,20 @@ const style = css`
     margin: 2px;
     height: 16px;
     width: 16px;
+  }
+
+  #checkbox:disabled + label:before {
+    background: #d5d5d5;
+    pointer-events: none;
   }`;
 
-const attributes = {}
+const attributes = {
+  // @TODO: exclude from ui-radio-group array<string>
+};
 const properties = {
   /** */
     checked(root, value) {
-      updateChildrenProperty(root, '#checkbox', 'checked', [true, ''].includes(value))
+      updateChildrenElement(root, '#checkbox', 'checked', [true, ''].includes(value));
     },
 
   /** */

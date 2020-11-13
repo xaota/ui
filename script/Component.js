@@ -51,9 +51,10 @@ const state = Symbol('state');
 
       const template = this.constructor.template.content.cloneNode(true);
       this.ready(template).attach(template);
+      this[state] = 'attached';
+      this.mount(this.shadowRoot);
       this[state] = 'mounted';
       if (this[store]) this.render(this.shadowRoot);
-      this.mount(this.shadowRoot);
       this.event('DOMContentLoaded');
     }
 

@@ -39,9 +39,9 @@ const properties = {
   /** Создание компонента {UISearchDrop} @constructor
     * @param {string} label название поля в UI
     */
-    constructor(label) { // , right = false
+    constructor(label) {
       super();
-      this.label = label;
+      if (label) this.label = label;
     }
 
   /** Создание элемента в DOM (DOM доступен) / mount @lifecycle

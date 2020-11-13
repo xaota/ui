@@ -50,6 +50,7 @@ const style = css`
     transform: scale(0.8);
     opacity: 0;
     transition: ease opacity 0.3s;
+    cursor: pointer;
   }
   :host([right]) #checkbox + label > ui-icon {
     left: auto;

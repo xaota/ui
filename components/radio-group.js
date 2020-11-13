@@ -4,9 +4,14 @@ import UIRadio from './radio.js';
 const style = css`
   :host {
     display: inline-block;
+    vertical-align: middle;
   }
 
   slot {
+    display: block;
+  }
+
+  :host([vertical]) ::slotted(ui-radio) {
     display: block;
   }
 
@@ -74,34 +79,46 @@ const properties = {}
       if (value) this.value = value;
     }
 
+    #mutationObserver = null;
+
   /** Создание элемента в DOM (DOM доступен) / mount @lifecycle
     * @param {ShadowRoot} node корневой узел элемента
     * @return {Component} @this {UIRadioGroup} текущий компонент
     */
     mount(node) {
       super.mount(node, attributes, properties);
-      const listeners = [];
-      const slot = node.querySelector('slot');
-      slot.addEventListener('slotchange', () => {
-        const nodes = [...slot.assignedElements()];
-        const items = nodes.filter(item => UIRadio.is(item));
 
-        const listener = e => {
-          const checked = e.target.checked;
-          if (!checked) return;
-          const value = e.target.value;
-          if (value !== undefined && this.value !== value) return this.value = value;
-          change(items, e.target);
-          this.event('change', {value: e.target.value});
-        };
+      this.#mutationObserver = new MutationObserver(mutations => {
+        mutations.forEach(mutation => {
+          const radio = mutation.target;
+          const conditions = [
+            mutation.type === "attributes",
+            mutation.attributeName === 'checked',
+            UIRadio.is(radio)
+          ];
 
-        items.forEach(item => {
-          listeners.forEach(listener => item.removeEventListener('change', listener));
-          item.addEventListener('change', listener);
+          if (conditions.some(c => c !== true)) return;
+          if (!radio.checked) return; // @TODO: radio.exclude from ui-radio-group array<string>
+
+          [...this.querySelectorAll('ui-radio')]
+            .filter(r => r !== radio)
+            .forEach(r => r.checked = false);
+
+          this.event('change', { value: radio.value });
         });
-
-        listeners.push(listener);
       });
+
+      this.#mutationObserver.observe(this, {
+        attributes: true,
+        attributeFilter: ['checked'],
+        subtree: true
+      });
+
+      return this;
+    }
+
+    unmount() {
+      this.#mutationObserver.disconnect();
       return this;
     }
   }
@@ -109,12 +126,6 @@ const properties = {}
 Component.init(UIRadioGroup, 'ui-radio-group', {attributes, properties});
 
 // #region [Private]
-/** / change */
-  function change(items, target) {
-    const temp = items.filter(item => item !== target && item.checked);
-    temp.forEach(item => item.checked = false);
-  }
-
 /** / setValue */
   function setValue(root, value) {
     const slot = root.querySelector('slot');
@@ -124,7 +135,5 @@ Component.init(UIRadioGroup, 'ui-radio-group', {attributes, properties});
     if (!target) return;
 
     target.checked = true;
-    change(items, target);
-    this.event('change', {value});
   }
 // #endregion
