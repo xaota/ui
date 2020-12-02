@@ -1,11 +1,19 @@
 import Component, {html, css} from '../script/Component.js';
+import {updateChildrenAttribute} from '../script/DOM.js';
 
-const attributes = {};
+const attributes = {
+  avatar(root, value) {}
+};
 const properties = {};
 
 const style = css`
   :host {
-    display: block;
+    display: grid;
+    grid-template-areas: /* avatar, caption, description, menu, content, common action{1..3} */
+      'avatar caption     caption     caption     menu'
+      'avatar description description description .'
+      '.      content     common      common      more'
+      '.      action1     action2     action3     .';
   }
   slot {
     display: block;
@@ -18,7 +26,20 @@ const style = css`
     static template = html`
       <template>
         <style>${style}</style>
+
+        <ui-avatar></ui-avatar>
+        <ui-caption></ui-caption>
+        <ui-text></ui-text>
+        <ui-drop>
+          <ui-icon>more</ui-icon>
+          <slot name="menu" slot="drop"></slot>
+        </ui-drop>
         <slot></slot>
+        <slot name="common"></slot>
+        <slot name="more"></slot>
+        <slot class="action" name="action1"></slot>
+        <slot class="action" name="action2"></slot>
+        <slot class="action" name="action3"></slot>
       </template>`;
 
   /** Создание компонента {UISnippet} @constructor
