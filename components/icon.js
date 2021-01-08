@@ -1,15 +1,16 @@
 import Component, {html, css} from '../script/Component.js';
 import SVG from '../asset/icons.svg.js';
+import {clear} from '../script/DOM.js';
 
 const style = css`
   :host {
     display: inline-block;
     width: 24px;
     height: 24px;
-    color: var(--iconStatic, black);
+    color: var(--icon-static, black);
   }
   :host(:hover) {
-    color: var(--iconHover, black);
+    color: var(--icon-hover, black);
   }
   slot {
     display: none;
@@ -26,7 +27,6 @@ const style = css`
 const attributes = {}
 const properties = {}
 
-
 /** {UIIcon} @class
   * @description Отображение иконки
   */
@@ -35,7 +35,7 @@ const properties = {}
     <template>
       <style>${style}</style>
       <slot></slot>
-      ${SVG}
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"></svg>
     </template>`;
 
   /** Создание компонента {UIIcon} @constructor
@@ -52,28 +52,31 @@ const properties = {}
     */
     mount(node) {
       super.mount(node, attributes, properties);
-
+      const template = templateSVG(document.head, 'xaota-ui-template-svg-icons');
       const slot = node.querySelector('slot');
       const svg  = node.querySelector('svg');
-      const icon = node.querySelector('use');
 
       slot.addEventListener('slotchange', _ => {
         let self = slot;
         do {
           self = self.assignedNodes()[0];
         } while (self instanceof HTMLSlotElement);
+
         const value = self?.nodeValue;
         if (!value) return;
 
         const name = value.trim();
-        if (!name) return icon.removeAttributeNS('http://www.w3.org/1999/xlink', 'href');
+        if (!name) {
+          clear(svg);
+          return;
+        }
 
         const id = '#' + name;
-        icon.setAttributeNS('http://www.w3.org/1999/xlink', 'href', id);
-        const g = svg.querySelector(id);
+        const g = template.querySelector(id);
         const viewBox = g.getAttribute('viewBox');
         const current = svg.getAttribute('viewBox');
         if (viewBox && current !== viewBox || !viewBox && current !== '0 0 24 24') svg.setAttribute('viewBox', viewBox || '0 0 24 24');
+        svg.innerHTML = g.innerHTML;
       });
 
       return this;
@@ -81,3 +84,17 @@ const properties = {}
   }
 
 Component.init(UIIcon, 'ui-icon', {attributes, properties});
+
+// #region [Private]
+function templateSVG(root, id) {
+  const template = root.querySelector('#' + id);
+  if (template) return template;
+
+  var fragment = document.createElement('template');
+  fragment.innerHTML = SVG.trim();
+  const svg = fragment.content.firstChild;
+  svg.id = id;
+  root.appendChild(svg);
+  return svg;
+}
+// #endregion

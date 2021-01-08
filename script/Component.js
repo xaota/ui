@@ -60,7 +60,7 @@ const state = Symbol('state');
 
   /** disconnectedCallback */
     disconnectedCallback() { // удаление элемента из DOM
-      this.unmount();
+      this.unmount(this.shadowRoot); // ?
       this[state] = 'unmounted';
       // this.event('unload?');
       // if (!this.ownerDocument.defaultView) return; // !
@@ -98,7 +98,7 @@ const state = Symbol('state');
     }
 
   /** unmount */
-    unmount() { // тут типа можно отписаться от событий, но вроде пофиг
+    unmount(node) { // тут типа можно отписаться от событий, но вроде пофиг
       return this;
     }
 

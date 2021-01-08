@@ -3,7 +3,7 @@ import Component, {html, css} from '../script/Component.js';
 const style = css`
   :host {
     --radius: 3px;
-    --background: rgba(255, 255, 255, 0.95);
+    /* --background: rgba(255, 255, 255, 0.95); */
 
     display: block;
     box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
@@ -13,7 +13,7 @@ const style = css`
     font-weight: 100;
     outline: none;
     border-radius: var(--radius);
-    background: var(--background);
+    background: var(--background); /* --background-panel? */
   }
   slot {
     display: block;

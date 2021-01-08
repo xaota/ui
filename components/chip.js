@@ -46,6 +46,7 @@ const style = css`
     background: none;
     border: 1px solid var(--color-static);
     padding: 5px 15px;
+    color: var(--color-foreground);
   }
 
   :host([outline]) div.root:hover {
@@ -57,7 +58,7 @@ const style = css`
     display: none;
     height: 24px;
     width: 24px;
-    margin-left: 2px;
+    margin-left: 4px;
     margin-right: -12px;
     margin-top: -2px;
     cursor: pointer;
@@ -78,6 +79,10 @@ const style = css`
     display: inline;
   }
 
+  :host([outline]) button.action > ui-icon {
+    color: var(--color-static);
+  }
+
   :host([action]) button.action {
     display: inline;
   }
@@ -85,7 +90,7 @@ const style = css`
   slot[name="avatar"]::slotted(*) {
     width: 32px;
     height: 32px;
-    margin-right: 2px;
+    margin-right: 4px;
     margin-left: -16px;
     margin-top: -6px;
     vertical-align: top;

@@ -170,7 +170,7 @@ const attributes = {
 const properties = {}
 
 /** {UITooltip} @class
-  * @description Отображение блока простого текста
+  * @description Отображение текста подсказки
   */
   export default class UITooltip extends Component {
     static template = html`

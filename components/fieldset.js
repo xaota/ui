@@ -12,7 +12,7 @@ const style = css`
   }
   header {
     display: block;
-    background: #eee;
+    background: var(--background-dark);
     font: var(--font);
     cursor: pointer;
     padding: 0.25em;
@@ -25,11 +25,11 @@ const style = css`
     text-decoration: none;
   }
   header:hover {
-    background: #e8e8e8;
+    background: var(--background-light);
   }
   slot {
     display: block;
-    border-right: 2px solid #eee;
+    border-right: 2px solid var(--background-dark);
     margin-right: 0.5em;
     padding: 0.5em;
     padding-bottom: 0;

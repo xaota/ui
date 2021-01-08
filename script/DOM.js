@@ -2,6 +2,7 @@
 
 /** */
   export default function $(selector, root = document) {
+    if (selector === root) return selector;
     return typeof selector === 'object'
       ? selector
       : root.querySelector(selector);
@@ -56,7 +57,9 @@
   }
 
 /** */
-  export function cssVariable(element, name, value) {
+  export function cssVariable(selector, name, value, root = document) {
+    const element = $(selector, root);
+    if (!element) return;
     if (name.charAt(0) !== '-') name = '--' + name;
     if (value) element.style.setProperty(name, value);
     return getComputedStyle(element).getPropertyValue(name);

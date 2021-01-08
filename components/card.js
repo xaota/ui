@@ -6,13 +6,13 @@ const style = css`
 
     display: block;
     box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
-    border: none;
+    border: none; /* --background-dark */
     box-sizing: border-box;
     font-size: 1.1em;
     font-weight: 100;
     outline: none;
     border-radius: var(--radius);
-    /* background: white; */
+    background: var(--background-panel);
     padding: 0;
     overflow: hidden;
   }

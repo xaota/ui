@@ -3,7 +3,7 @@ import Component, {html, css} from '../script/Component.js';
 const style = css`
   :host {
     display: grid;
-    background: #f5f5f8;
+    background: var(--background-panel);
     box-sizing: border-box;
     padding: 1em;
     grid-template-areas: "avatar content" ". action";
@@ -12,6 +12,7 @@ const style = css`
     box-shadow: /*0px 3px 5px -1px rgba(0,0,0,0.2),
                 0px 6px 10px 0px rgba(0,0,0,0.14),*/
                 0px 1px 18px 0px rgba(0,0,0,0.12);
+    /* border: --background-dark */
   }
   slot[name="avatar"] {
     grid-area: avatar;

@@ -12,7 +12,7 @@ const style = css`
     font-weight: 100;
     outline: none;
     border-radius: var(--radius);
-    background: white;
+    background: var(--background-panel);
   }
 
   div.root {
@@ -40,16 +40,24 @@ const style = css`
   }
 
   ::slotted(*) {
-    /* font-size: 18px; */
+    /*
+    font-size: 18px;
+    */
     margin: 0 .3em;
     text-decoration: none;
-    color: var(--color-primary-dark);
     font-family: var(--font);
     display: block;
+    color: var(--color-primary-dark);
+  }
+
+  @media screen and (prefers-color-scheme: dark) {
+    ::slotted(*) {
+      color: var(--color-primary-light);
+    }
   }
 
   ::slotted(*:hover) {
-    color: black;
+    color: var(--foreground);
     /* border-bottom: 1px dashed var(--color-primary-light); */
   }`;
 

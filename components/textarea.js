@@ -56,6 +56,7 @@ const style = css`
     font: var(--font);
     transition: 0.2s all ease;
     resize: none;
+    color: var(--color-foreground);
   }
 
   div.root > textarea:focus, div.root > textarea:valid {

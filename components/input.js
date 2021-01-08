@@ -48,6 +48,7 @@ const style = css`
     border: none;
     font: var(--font);
     transition: 0.2s all ease;
+    color: var(--color-foreground);
   }
 
   div.root > input:focus, div.root > input:valid {

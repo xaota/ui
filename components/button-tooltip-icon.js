@@ -1,8 +1,7 @@
 import Component, {html, css} from '../script/Component.js';
-import UIButton  from './button.js';
-import UIIcon    from './icon.js';
+import UIButtonIcon  from './button-icon.js';
 import UITooltip from './tooltip.js';
-import {updateChildrenAttribute, updateChildrenProperty} from '../script/DOM.js';
+import {updateChildrenAttribute} from '../script/DOM.js';
 
 const style = css`
   :host {
@@ -14,8 +13,8 @@ const style = css`
   }`;
 
 const attributes = {
-    text(root, value) {updateChildrenAttribute(root, 'ui-button', 'text', value)},
-    mode(root, value) {updateChildrenAttribute(root, 'ui-button', 'mode', value)},
+    text(root, value) {updateChildrenAttribute(root, 'ui-button-icon', 'text', value)},
+    mode(root, value) {updateChildrenAttribute(root, 'ui-button-icon', 'mode', value)},
     content(root, value) {updateChildrenAttribute(root, 'ui-tooltip', 'content', value)},
     x(root, value) {updateChildrenAttribute(root, 'ui-tooltip', 'x', value)},
     y(root, value) {updateChildrenAttribute(root, 'ui-tooltip', 'y', value)}

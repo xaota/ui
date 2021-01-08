@@ -6,8 +6,8 @@ const style = css`
     display: block;
   }
   div.root {
-    background: #fff;
-    border: 1px solid #eee;
+    background: var(--background-panel);
+    border: 1px solid var(--background-dark);
     box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
     box-sizing: border-box;
   }
@@ -23,7 +23,6 @@ const style = css`
     padding: 0 1em;
   }
   header p.summary {
-    color: black;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
@@ -38,16 +37,14 @@ const style = css`
     right: 1em;
     top: 1em;
     cursor: pointer;
-    color: black;
   }
   div.root.expand header:after {
     content: url('../../icons/light/keyboard_arrow_up.svg');
   }
   slot {
     display: block;
-    color: black;
     padding: 0 1em;
-    background-color: white;
+    background-color: var(--background-panel);
     height: 0;
     overflow: hidden;
     transition: transform 0.2s ease-out, padding 0.2s ease-in;

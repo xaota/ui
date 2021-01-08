@@ -13,14 +13,14 @@ const style = css`
   }
 
   #links {
-    border: none;
-    border-bottom: 2px solid #f5f5f8;
     box-sizing: border-box;
     font-size: 0;
     font-weight: 100;
     outline: none;
-    border-radius: var(--radius);
+    border-radius: var(--radius, 0);
     margin-bottom: 0.4em;
+    padding: var(--padding-tabs, 0);
+    border-bottom: 2px solid var(--color-edge);
   }
 
   #links > label {
@@ -37,8 +37,8 @@ const style = css`
   }
 
   #links > label.selected {
-    background: #f5f5f8;
-    border-bottom: 2px solid rgb(221, 97, 39);
+    background: var(--background-panel);
+    border-bottom: 2px solid var(--color-edge-accent);
     padding-bottom: 6px;
     box-shadow: 0px 1px 18px 0px rgba(0,0,0,0.12);
     z-index: 1;
