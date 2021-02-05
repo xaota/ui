@@ -13,7 +13,7 @@ const style = css`
     font-weight: 100;
     outline: none;
     border-radius: var(--radius);
-    background: var(--background); /* --background-panel? */
+    background: var(--background-panel); /* --background-panel? */
   }
   slot {
     display: block;

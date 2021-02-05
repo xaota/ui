@@ -8,39 +8,42 @@ const style = css`
     display: block;
   }
   slot {
-    display: block;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }`;
 
-/** ChronicsItem {UIChronicsItem} @class @ui @component <ui-chronics-item />
-  * Карточка в ленте событий
+/** PipelineStage {UIPipelineStage} @class @ui @component <ui-pipeline-stage />
+  * Группа параллельных элементов пайплайна
   */
-  export default class UIChronicsItem extends Component {
+  export default class UIPipelineStage extends Component {
     static template = html`
       <template>
         <style>${style}</style>
         <slot></slot>
       </template>`;
 
-  /** Создание компонента {UIChronicsItem} @constructor
+  /** Создание компонента {UIPipelineStage} @constructor
     * @param {type} store type
     */
     constructor(store) {
       super();
-      this.store({store});
+      // this.store({store});
     }
 
   /** Создание элемента в DOM (DOM доступен) / mount @lifecycle
     * @param {ShadowRoot} node корневой узел элемента
-    * @return {UIChronicsItem} @this текущий компонент
+    * @return {UIPipelineStage} @this текущий компонент
     */
     mount(node) {
       super.mount(node, attributes, properties);
 
-      const {store} = this.store();
+      // const {store} = this.store();
       return this;
     }
 
 
   }
 
-Component.init(UIChronicsItem, 'ui-chronics-item', {attributes, properties});
+Component.init(UIPipelineStage, 'ui-pipeline-stage', {attributes, properties});

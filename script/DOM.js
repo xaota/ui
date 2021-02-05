@@ -9,6 +9,14 @@
   }
 
 /** */
+  export function $$(selector, root = document) {
+    if (selector === root) return selector;
+    return typeof selector === 'object'
+      ? selector
+      : [...root.querySelectorAll(selector)];
+  }
+
+/** */
   export function updateChildrenElement(root, selector, attribute, value) {
     const children = $(selector, root);
     if (!children) return;

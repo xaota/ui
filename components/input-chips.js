@@ -67,10 +67,13 @@ const properties = {
       super.mount(node, attributes, properties);
       const input = node.querySelector('ui-input');
       const slot  = node.querySelector('slot');
-      this.addEventListener('focus',      _ => input.dispatchEvent(new FocusEvent('focus')));
+      this.addEventListener('focus',      _ => {
+        calculateChips.call(this, input, slot);
+        input.dispatchEvent(new FocusEvent('focus'));
+      });
       input.addEventListener('enter',     _ => calculateValue.call(this, input));
       input.addEventListener('change',    _ => calculateValue.call(this, input));
-      slot.addEventListener('slotchange', _ => setTimeout(_ => calculateChips.call(this, input, slot), 100));
+      slot.addEventListener('slotchange', _ => setTimeout(_ => calculateChips.call(this, input, slot), 200));
       return this;
     }
 

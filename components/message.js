@@ -11,6 +11,8 @@ const style = css`
     align-items: end;
     grid-column-gap: 1em;
     grid-row-gap: 2px;
+
+    --background-color: var(--background-panel); /* --color-default-light */
   }
 
   :host([left]) {
@@ -35,8 +37,8 @@ const style = css`
   slot:not([name]) {
     display: inline-block;
     grid-area: content;
-    background: var(--color-default-light);
-    border: 1px solid #eee;
+    background: var(--background-color);
+    border: 1px solid var(--background-dark);
     box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
     box-sizing: border-box;
     position: relative;
@@ -58,7 +60,7 @@ const style = css`
     border-bottom: 0;
     margin-top: -8px;
     margin-left: -16px; */
-    background-color: var(--color-default-light);
+    background-color: var(--background-color);
     /* #F2F2F2; */
     content: "\00a0";
     display: block;

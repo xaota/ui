@@ -11,36 +11,36 @@ const style = css`
     display: block;
   }`;
 
-/** Timeline {UITimeline} @class @ui @component <ui-timeline />
-  * Временная шкала
+/** Notify {UINotify} @class @ui @component <ui-notify />
+  * Уведомление
   */
-  export default class UITimeline extends Component {
+  export default class UINotify extends Component {
     static template = html`
       <template>
         <style>${style}</style>
         <slot></slot>
       </template>`;
 
-  /** Создание компонента {UITimeline} @constructor
-    // * @param {}
+  /** Создание компонента {UINotify} @constructor
+    * @param {type} store type
     */
-    constructor() {
+    constructor(store) {
       super();
-      // this.store({});
+      this.store({store});
     }
 
   /** Создание элемента в DOM (DOM доступен) / mount @lifecycle
     * @param {ShadowRoot} node корневой узел элемента
-    * @return {UITimeline} @this текущий компонент
+    * @return {UINotify} @this текущий компонент
     */
     mount(node) {
       super.mount(node, attributes, properties);
 
-      // const {} = this.store();
+      const {store} = this.store();
       return this;
     }
 
 
   }
 
-Component.init(UITimeline, 'ui-timeline', {attributes, properties});
+Component.init(UINotify, 'ui-notify', {attributes, properties});

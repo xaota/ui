@@ -12,6 +12,15 @@ const style = css`
   }
   :host([size="large"]) {
     font-size: 30px;
+  }
+  :host([center]) {
+    text-align: center;
+  }
+  :host([right]) {
+    text-align: right;
+  }
+  :host([left]) {
+    text-align: left;
   }`;
 
 const attributes = {}

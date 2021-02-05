@@ -43,7 +43,7 @@ const style = css`
     /*
     font-size: 18px;
     */
-    margin: 0 .3em;
+    margin: .5em .3em;
     text-decoration: none;
     font-family: var(--font);
     display: block;
