@@ -15,7 +15,7 @@ const style = css`
     background: var(--background-dark);
     font: var(--font);
     cursor: pointer;
-    padding: 0.25em;
+    padding: 0.5em;
     padding-left: 1.5em;
     font-weight: 400;
     transition: 0.3s ease background-color;
@@ -38,15 +38,24 @@ const style = css`
     display: none;
     padding: 0;
   }
+
   ::slotted(a) {
     text-decoration: none;
     color: var(--color-primary-dark);
     font-family: var(--font);
   }
-
   ::slotted(a:hover) {
     color: black;
     /* border-bottom: 1px dashed var(--color-primary-light); */
+  }
+
+  @media screen and (prefers-color-scheme: dark) {
+    ::slotted(a) {
+      color: var(--color-primary-light);
+    }
+    ::slotted(a:hover) {
+      color: white;
+    }
   }`;
 
 const attributes = {

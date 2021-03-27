@@ -50,6 +50,10 @@ const style = css`
     color: var(--color-primary-dark);
   }
 
+  ::slotted(ui-fieldset) {
+    margin: 0 .3em;
+  }
+
   @media screen and (prefers-color-scheme: dark) {
     ::slotted(*) {
       color: var(--color-primary-light);
