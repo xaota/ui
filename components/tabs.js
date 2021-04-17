@@ -1,5 +1,5 @@
-import Component, {html, css} from '../script/Component.js';
-import {clear} from '../script/DOM.js';
+import Component, { html, css } from '../script/Component.js';
+import { clear } from '../script/DOM.js';
 import UITabsItem from './tabs-item.js';
 
 const style = css`
@@ -106,14 +106,14 @@ const properties = {}
 
       const tab = changeTab(links, tabs, name, selected);
       if (tab) {
-        tabs[selected].event('select', {show: false})
-        tab.event('select', {show: true});
-        this.event('change', {tab: tabs[tab], index: tab});
+        tabs[selected].event('select', { show: false })
+        tab.event('select', { show: true });
+        this.event('change', { tab: tabs[tab], index: tab });
       }
     }
   }
 
-Component.init(UITabs, 'ui-tabs', {attributes, properties});
+Component.init(UITabs, 'ui-tabs', { attributes, properties });
 
 // #region [Private]
 /** */

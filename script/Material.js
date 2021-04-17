@@ -1,5 +1,5 @@
 /** @this {Material} */
-  export function drawRipple({x, y}) { // Material design ripple animation.
+  export function drawRipple({ x, y }) { // Material design ripple animation.
     const div = document.createElement('div');
     div.classList.add('ripple');
     this.insertBefore(div, this.firstChild);

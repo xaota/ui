@@ -1,4 +1,4 @@
-import Component, {html, css} from '../script/Component.js';
+import Component, { html, css } from '../script/Component.js';
 
 const style = css`
   :host {
@@ -59,4 +59,4 @@ const properties = {
     }
   }
 
-Component.init(UIDropItem, 'ui-drop-item', {attributes, properties});
+Component.init(UIDropItem, 'ui-drop-item', { attributes, properties });

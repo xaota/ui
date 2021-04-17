@@ -1,6 +1,6 @@
-import Component, {html, css} from '../script/Component.js';
+import Component, { html, css } from '../script/Component.js';
 import SVG from '../asset/icons.svg.js';
-import {clear} from '../script/DOM.js';
+import { clear, slottedValue } from '../script/DOM.js';
 
 const style = css`
   :host {
@@ -56,26 +56,15 @@ const properties = {}
       const slot = node.querySelector('slot');
       const svg  = node.querySelector('svg');
 
-      slot.addEventListener('slotchange', _ => {
-        let self = slot;
-        do {
-          self = self.assignedNodes()[0];
-        } while (self instanceof HTMLSlotElement);
-
-        const value = self?.nodeValue;
-        if (!value) return;
-
-        const name = value.trim();
-        if (!name) {
-          clear(svg);
-          return;
-        }
+      slot.addEventListener('slotchange', () => {
+        const name = slottedValue(slot);
+        if (!name) return clear(svg);
 
         const id = '#' + name;
         const g = template.querySelector(id);
         const viewBox = g.getAttribute('viewBox');
         const current = svg.getAttribute('viewBox');
-        if (viewBox && current !== viewBox || !viewBox && current !== '0 0 24 24') svg.setAttribute('viewBox', viewBox || '0 0 24 24');
+        if ((viewBox && current !== viewBox) || (!viewBox && current !== '0 0 24 24')) svg.setAttribute('viewBox', viewBox || '0 0 24 24');
         svg.innerHTML = g.innerHTML;
       });
 
@@ -83,18 +72,19 @@ const properties = {}
     }
   }
 
-Component.init(UIIcon, 'ui-icon', {attributes, properties});
+Component.init(UIIcon, 'ui-icon', { attributes, properties });
 
 // #region [Private]
-function templateSVG(root, id) {
-  const template = root.querySelector('#' + id);
-  if (template) return template;
+/** / templateSVG */
+  function templateSVG(root, id) {
+    const template = root.querySelector('#' + id);
+    if (template) return template;
 
-  var fragment = document.createElement('template');
-  fragment.innerHTML = SVG.trim();
-  const svg = fragment.content.firstChild;
-  svg.id = id;
-  root.appendChild(svg);
-  return svg;
-}
+    const fragment = document.createElement('template');
+    fragment.innerHTML = SVG.trim();
+    const svg = fragment.content.firstChild;
+    svg.id = id;
+    root.appendChild(svg);
+    return svg;
+  }
 // #endregion

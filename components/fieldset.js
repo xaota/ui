@@ -1,5 +1,5 @@
-import Component, {html, css} from '../script/Component.js';
-import {updateChildrenText} from '../script/DOM.js';
+import Component, { html, css } from '../script/Component.js';
+import { updateChildrenText } from '../script/DOM.js';
 
 const style = css`
   :host {
@@ -98,4 +98,4 @@ const properties = {
     }
   }
 
-Component.init(UIFieldset, 'ui-fieldset', {attributes, properties});
+Component.init(UIFieldset, 'ui-fieldset', { attributes, properties });

@@ -1,5 +1,5 @@
-import Component, {html, css} from '../script/Component.js';
-import {updateChildrenProperty, updateChildrenElement} from '../script/DOM.js';
+import Component, { html, css } from '../script/Component.js';
+import { updateChildrenProperty, updateChildrenElement } from '../script/DOM.js';
 import UIIcon from './icon.js';
 
 const style = css`
@@ -118,4 +118,4 @@ const properties = {
     }
   }
 
-Component.init(UICheckbox, 'ui-checkbox', {attributes, properties});
+Component.init(UICheckbox, 'ui-checkbox', { attributes, properties });

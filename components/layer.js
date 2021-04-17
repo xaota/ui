@@ -1,4 +1,4 @@
-import Component, {html, css} from '../script/Component.js';
+import Component, { html, css } from '../script/Component.js';
 
 const attributes = {};
 const properties = {};
@@ -39,8 +39,6 @@ const style = css`
       // const {} = this.store();
       return this;
     }
-
-
   }
 
-Component.init(UILayer, 'ui-layer', {attributes, properties});
+Component.init(UILayer, 'ui-layer', { attributes, properties });

@@ -1,5 +1,5 @@
-import Component, {html, css} from '../script/Component.js';
-import {cssVariable, updateChildrenProperty, updateChildrenAttribute} from '../script/DOM.js';
+import Component, { html, css } from '../script/Component.js';
+import { cssVariable, updateChildrenProperty, updateChildrenAttribute } from '../script/DOM.js';
 
 const style = css`
   :host {
@@ -173,7 +173,7 @@ const properties = {
     }
   }
 
-Component.init(UIInputSlider, 'ui-input-slider', {attributes, properties});
+Component.init(UIInputSlider, 'ui-input-slider', { attributes, properties });
 
 // #region [Private]
 /** / setValue */

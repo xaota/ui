@@ -1,4 +1,4 @@
-import Component, {html, css} from '../script/Component.js';
+import Component, { html, css } from '../script/Component.js';
 
 const attributes = {};
 const properties = {};
@@ -35,8 +35,6 @@ const style = css`
       super.mount(node, attributes, properties);
       return this;
     }
-
-
   }
 
-Component.init(UIOverlay, 'ui-overlay', {attributes, properties});
+Component.init(UIOverlay, 'ui-overlay', { attributes, properties });

@@ -1,5 +1,5 @@
-import Component, {html, css}    from '../script/Component.js';
-import {updateChildrenAttribute} from '../script/DOM.js';
+import Component, { html, css }    from '../script/Component.js';
+import { updateChildrenAttribute } from '../script/DOM.js';
 import UIInput from './input.js';
 
 const style = css`
@@ -55,4 +55,4 @@ const properties = {
     }
   }
 
-Component.init(UISearch, 'ui-search', {attributes, properties});
+Component.init(UISearch, 'ui-search', { attributes, properties });

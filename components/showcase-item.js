@@ -1,9 +1,9 @@
-import Component, {html, css} from '../script/Component.js';
-import {updateChildrenText} from '../script/DOM.js';
+import Component, { html, css } from '../script/Component.js';
+import { updateChildrenText } from '../script/DOM.js';
 import UIIcon from './icon.js';
 
 const attributes = {
-  icon(root, value) {updateChildrenText(root, 'ui-icon', value)},
+  icon(root, value) { updateChildrenText(root, 'ui-icon', value) }
 };
 const properties = {};
 
@@ -62,8 +62,6 @@ const style = css`
       super.mount(node, attributes, properties);
       return this;
     }
-
-
   }
 
-Component.init(UIShowCase, 'ui-showcase-item', {attributes, properties});
+Component.init(UIShowCase, 'ui-showcase-item', { attributes, properties });

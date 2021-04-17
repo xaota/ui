@@ -1,5 +1,5 @@
-import Component, {html, css} from '../script/Component.js';
-import $, {clear, $$} from '../script/DOM.js';
+import Component, { html, css } from '../script/Component.js';
+import $, { clear, $$ } from '../script/DOM.js';
 import UIPipelineStage from './pipeline-stage.js';
 import UIBrick from './brick.js';
 
@@ -79,7 +79,7 @@ const style = css`
     }
   }
 
-Component.init(UIPipeline, 'ui-pipeline', {attributes, properties});
+Component.init(UIPipeline, 'ui-pipeline', { attributes, properties });
 
 // #region [Private]
 function manage(root, stages) {
@@ -179,7 +179,7 @@ function getGroups(node, rect) {
         const left = Math.round(r.x - rect.x);
         const top = Math.round(r.y - rect.y + r.height / 2);
         const right = Math.round(left + r.width);
-        return {left, top, right}
+        return { left, top, right }
       });
   });
 }

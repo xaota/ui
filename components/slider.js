@@ -1,6 +1,8 @@
-import Component, {html, css} from '../script/Component.js';
+import Component, { html, css } from '../script/Component.js';
 import UISliderItem from './slider-item.js';
+// eslint-disable-next-line no-unused-vars
 import UIButton     from './button.js';
+// eslint-disable-next-line no-unused-vars
 import UIRadioGroup from './radio-group.js';
 import UIRadio      from './radio.js';
 
@@ -80,8 +82,8 @@ const properties = {}
         <!-- слайды -->
         <slot></slot>
         <!-- стрелочки -->
-        <ui-button-icon text id="left">keyboard_arrow_left</ui-button-icon>
-        <ui-button-icon text id="right">keyboard_arrow_right</ui-button-icon>
+        <ui-button-icon text id="left">arrow-keyboard-left</ui-button-icon>
+        <ui-button-icon text id="right">arrow-keyboard-right</ui-button-icon>
         <!-- переход к слайдам по точкам -->
         <ui-radio-group></ui-radio-group>
       </template>`;
@@ -96,7 +98,7 @@ const properties = {}
       const carousel = node.querySelector('slot');
 
       // точки
-      let items, count = 0;
+      let items; let count = 0;
       const footer = node.querySelector('ui-radio-group');
       footer.addEventListener('change', e => swipeToItem(carousel, e.detail.value, count));
 
@@ -121,13 +123,13 @@ const properties = {}
       controls.left.addEventListener('click', () => swipe(carousel, -1, footer));
       controls.right.addEventListener('click', () => swipe(carousel, 1, footer));
 
-      setTimeout(() => footer.value = 0, 100); // items.findIndex(e => e.selected) (-1 -> 0)
+      setTimeout(() => { footer.value = 0 }, 100); // items.findIndex(e => e.selected) (-1 -> 0)
 
       return this;
     }
   }
 
-Component.init(UISlider, 'ui-slider', {attributes, properties});
+Component.init(UISlider, 'ui-slider', { attributes, properties });
 
 // #region [Private]
 /** */
@@ -140,13 +142,13 @@ Component.init(UISlider, 'ui-slider', {attributes, properties});
     const item  = index < 0 ? count - 1 : index >= count ? 0 : index;
     const value = children[item].value;
     swipeToItem(carousel, item, value, count);
-    setTimeout(() => footer.value = value, 100);
+    setTimeout(() => { footer.value = value }, 100);
   }
 
 /** */
   function swipeToItem(carousel, item, count) {
     const left = Math.floor(carousel.scrollWidth * (item / count));
-    const options = {left, top: 0, behavior: 'smooth'};
+    const options = { left, top: 0, behavior: 'smooth' };
     carousel.scrollTo(options);
   }
 // #endregion

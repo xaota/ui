@@ -1,5 +1,5 @@
-import Component, {html, css} from '../script/Component.js';
-import {updateChildrenText}   from '../script/DOM.js';
+import Component, { html, css } from '../script/Component.js';
+import { updateChildrenText }   from '../script/DOM.js';
 import UIIcon   from './icon.js';
 import UIAvatar from './avatar.js';
 
@@ -138,7 +138,7 @@ const properties = {}
     }
   }
 
-Component.init(UIChip, 'ui-chip', {attributes, properties});
+Component.init(UIChip, 'ui-chip', { attributes, properties });
 
 // #region [Private]
 /** / swapEvent */

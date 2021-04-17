@@ -1,7 +1,7 @@
 import Component, { html, css } from '../script/Component.js';
 import UIButton from './button.js';
 import UIIcon   from './icon.js';
-import { updateChildrenAttribute } from '../script/DOM.js';
+import { updateChildrenAttribute, updateChildrenText } from '../script/DOM.js';
 
 const style = css`
   :host {
@@ -12,31 +12,35 @@ const style = css`
   }`;
 
 const attributes = {
-  /** */
+  /** / icon */
+    icon(root, value) { updateChildrenText(root, 'ui-icon', value) },
+  /** / text */
     text(root, value) { updateChildrenAttribute(root, 'ui-button', 'text', value) },
-  /** */
+  /** / mode */
     mode(root, value) { updateChildrenAttribute(root, 'ui-button', 'mode', value) }
   }
 const properties = {
-  /** */
+  /** / disabled */
     disabled(root, value) { updateChildrenAttribute(root, 'ui-button', 'disabled', value) }
   }
 
-/** {UIButtonIcon} @class Кнопка-иконка
+/** {UIButtonIconText} @class Кнопка-иконка с текстом
   */
-  export default class UIButtonIcon extends Component {
+  export default class UIButtonIconText extends Component {
     static template = html`
       <template>
         <style>${style}</style>
-        <ui-button><ui-icon><slot></slot></ui-icon></ui-button>
+        <ui-button><ui-icon></ui-icon><slot></slot></ui-button>
       </template>`;
 
-  /** Создание компонента {UIButtonIcon} @constructor
-    * @param {string?} icon Название иконки
+  /** Создание компонента {UIButtonIconText} @constructor
+    * @param {string?} icon название иконки
+    * @param {string?} text текст на кнопке
     */
-    constructor(icon) {
+    constructor(icon, text) {
       super();
-      if (icon) this.innerText = icon;
+      if (icon) this.icon = icon;
+      if (text) this.innerText = text;
     }
 
   /** Создание элемента в DOM (DOM доступен) / mount @lifecycle
@@ -48,4 +52,4 @@ const properties = {
     }
   }
 
-Component.init(UIButtonIcon, 'ui-button-icon', { attributes, properties });
+Component.init(UIButtonIconText, 'ui-button-icon-text', { attributes, properties });

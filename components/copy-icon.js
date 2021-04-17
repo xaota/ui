@@ -1,5 +1,5 @@
-import Component, {html, css} from '../script/Component.js';
-import $, {updateChildrenAttribute} from '../script/DOM.js';
+import Component, { html, css } from '../script/Component.js';
+import $, { updateChildrenAttribute } from '../script/DOM.js';
 import UIIcon from './icon.js';
 
 const attributes = {
@@ -56,8 +56,6 @@ const style = css`
 
       return this;
     }
-
-
   }
 
-Component.init(UICopyIcon, 'ui-copy-icon', {attributes, properties});
+Component.init(UICopyIcon, 'ui-copy-icon', { attributes, properties });

@@ -1,4 +1,4 @@
-import Component, {html, css} from '../script/Component.js';
+import Component, { html, css } from '../script/Component.js';
 
 const style = css`
   :host {
@@ -63,4 +63,4 @@ const properties = {}
     }
   }
 
-Component.init(UIBanner, 'ui-banner', {attributes, properties});
+Component.init(UIBanner, 'ui-banner', { attributes, properties });

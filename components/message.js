@@ -1,4 +1,4 @@
-import Component, {html, css} from '../script/Component.js';
+import Component, { html, css } from '../script/Component.js';
 
 const style = css`
   :host {
@@ -104,7 +104,7 @@ const style = css`
 const attributes = {}
 const properties = {
   left() {},
-  right() {},
+  right() {}
 }
 
 /** {UIMessage} @class
@@ -156,7 +156,7 @@ const properties = {
     }
   }
 
-Component.init(UIMessage, 'ui-message', {attributes, properties});
+Component.init(UIMessage, 'ui-message', { attributes, properties });
 
 // #region [Private]
 /** / toDOMelement */

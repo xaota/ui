@@ -1,6 +1,6 @@
-import Component, {html, css, url} from '../script/Component.js';
-import {drawRipple} from '../script/Material.js';
-import {pointerOffset} from '../script/DOM.js';
+import Component, { html, css, url } from '../script/Component.js';
+import { drawRipple } from '../script/Material.js';
+import { pointerOffset } from '../script/DOM.js';
 
 const style = css`
   @import "${url('../style/color.css', import.meta.url)}";
@@ -145,7 +145,7 @@ const properties = {
     constructor(content) {
       super();
       if (content === undefined) return;
-      if (typeof content !== 'object') content = {label: content};
+      if (typeof content !== 'object') content = { label: content };
 
       if ('label' in content) this.innerText = content.label;
       if ('mode'  in content && content.mode) this.mode = content.mode;
@@ -170,4 +170,4 @@ const properties = {
     }
   }
 
-Component.init(UIButton, 'ui-button', {attributes, properties});
+Component.init(UIButton, 'ui-button', { attributes, properties });

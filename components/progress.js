@@ -1,5 +1,5 @@
-import Component, {html, css} from '../script/Component.js';
-import {cssVariable} from '../script/DOM.js';
+import Component, { html, css } from '../script/Component.js';
+import { cssVariable } from '../script/DOM.js';
 
 const style = css`
   :host {
@@ -107,7 +107,7 @@ const speed = 1400;
       cssVariable(this, 'color', colors.join(','));
 
       // var start = performance.now();
-      var previous;
+      let previous;
       const frame = callback.bind(this);
       this.animation = window.requestAnimationFrame(frame);
       node.addEventListener('click', () => {
@@ -149,4 +149,4 @@ const speed = 1400;
     }
   }
 
-Component.init(UIProgress, 'ui-progress', {attributes, properties});
+Component.init(UIProgress, 'ui-progress', { attributes, properties });

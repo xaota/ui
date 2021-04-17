@@ -1,4 +1,4 @@
-import Component, {html, css} from '../script/Component.js';
+import Component, { html, css } from '../script/Component.js';
 
 const style = css`
   :host {
@@ -69,4 +69,4 @@ const properties = {
     }
   }
 
-Component.init(UIDivider, 'ui-divider', {attributes, properties});
+Component.init(UIDivider, 'ui-divider', { attributes, properties });

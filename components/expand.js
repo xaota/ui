@@ -1,5 +1,5 @@
-import Component, {html, css} from '../script/Component.js';
-import {updateChildrenClass, updateChildrenText} from '../script/DOM.js';
+import Component, { html, css } from '../script/Component.js';
+import { updateChildrenClass, updateChildrenText } from '../script/DOM.js';
 
 const style = css`
   :host {
@@ -32,14 +32,14 @@ const style = css`
     margin-right: 2em;
   }
   header:after {
-    content: url('../../icons/light/keyboard_arrow_down.svg');
+    content: 'down';
     position: absolute;
     right: 1em;
     top: 1em;
     cursor: pointer;
   }
   div.root.expand header:after {
-    content: url('../../icons/light/keyboard_arrow_up.svg');
+    content: 'up';
   }
   slot {
     display: block;
@@ -109,15 +109,15 @@ const properties = {
     }
   }
 
-Component.init(UIExpand, 'ui-expand', {attributes, properties});
+Component.init(UIExpand, 'ui-expand', { attributes, properties });
 
 // #region [Private]
 /** */
   function expand(root, value) {
-    updateChildrenClass(root, 'div.root', {expand: value === ''});
+    updateChildrenClass(root, 'div.root', { expand: value === '' });
 
     const expanded = this.expand;
-    this.event('expand', {expanded});
+    this.event('expand', { expanded });
     this.event(expanded ? 'unfold' : 'fold');
   }
 // #endregion

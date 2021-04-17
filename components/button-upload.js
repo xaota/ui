@@ -1,6 +1,6 @@
-import Component, {html, css} from '../script/Component.js';
+import Component, { html, css } from '../script/Component.js';
 import UIButton from './button.js';
-import {updateChildrenAttribute, updateChildrenProperty} from '../script/DOM.js';
+import { updateChildrenAttribute, updateChildrenProperty } from '../script/DOM.js';
 
 const style = css`
   :host, slot {
@@ -43,9 +43,9 @@ const attributes = {
   /** */
     text(root, value) { updateChildrenAttribute(root, 'ui-button',  'text',     value) },
   /** */
-    mode(root, value) {updateChildrenAttribute(root, 'ui-button',  'mode',     value)},
+    mode(root, value) { updateChildrenAttribute(root, 'ui-button',  'mode',     value) },
   /** */
-    accept(root, value) { updateChildrenAttribute(root, 'input[type="file"]', 'accept', value) },
+    accept(root, value) { updateChildrenAttribute(root, 'input[type="file"]', 'accept', value) }
 
   }
 const properties = {
@@ -55,7 +55,7 @@ const properties = {
     multiple(root, value) { updateChildrenProperty(root, 'input[type="file"]', 'multiple', value) }
   }
 
-const types = {buffer, binary, data, text};
+const types = { buffer, binary, data, text };
 
 /** {UIButtonUpload} @class
   * @description Отображение блока простого текста
@@ -108,7 +108,7 @@ const types = {buffer, binary, data, text};
     }
   }
 
-Component.init(UIButtonUpload, 'ui-button-upload', {attributes, properties});
+Component.init(UIButtonUpload, 'ui-button-upload', { attributes, properties });
 
 // #region [Private]
 /** / read */
@@ -121,7 +121,7 @@ Component.init(UIButtonUpload, 'ui-button-upload', {attributes, properties});
         if (reader.readyState !== FileReader.DONE) reject(); // !
         try {
           const data = await types[type](reader);
-          resolve({data, name: file.name});
+          resolve({ data, name: file.name });
         } catch (error) {
           reject(error);
         }

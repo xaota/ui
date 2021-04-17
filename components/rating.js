@@ -1,4 +1,4 @@
-import Component, {html, css} from '../script/Component.js';
+import Component, { html, css } from '../script/Component.js';
 import UIIcon from './icon.js';
 
 const style = css`
@@ -65,7 +65,7 @@ const style = css`
   }`;
 
 const attributes = {
-  value(root, value) { this.store({value: parseFloat(value)}) }
+  value(root, value) { this.store({ value: parseFloat(value) }) }
 }
 const properties = {
   disabled() {}
@@ -100,7 +100,7 @@ const properties = {
     }
 
     render(node) {
-      const {value = 0} = this.store();
+      const { value = 0 } = this.store();
       setValue(node, value);
     }
 
@@ -111,7 +111,7 @@ const properties = {
       const root = node.querySelector('div.root');
       root.innerHTML = '';
 
-      Array.from({length}, _ => document.createElement('div'))
+      Array.from({ length }, _ => document.createElement('div'))
         .reduce((root, div, index) => {
           div.classList.add('item');
           const border = new UIIcon('star_border');
@@ -128,13 +128,15 @@ const properties = {
           div.appendChild(active);
 
           root.appendChild(div);
-          if (!this.disabled) div.addEventListener('click', e => {
+          if (!this.disabled) {
+ div.addEventListener('click', e => {
             this.value = index + 1;
             // e.cancelBubble = true;
             // e.preventDefault();
             e.stopPropagation();
             return false;
           });
+}
 
           return div;
         }, root);
@@ -143,7 +145,7 @@ const properties = {
     }
   }
 
-Component.init(UIRating, 'ui-rating', {attributes, properties});
+Component.init(UIRating, 'ui-rating', { attributes, properties });
 
 // #region [Private]
 /** */

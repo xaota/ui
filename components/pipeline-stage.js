@@ -1,4 +1,4 @@
-import Component, {html, css} from '../script/Component.js';
+import Component, { html, css } from '../script/Component.js';
 
 const attributes = {};
 const properties = {};
@@ -42,8 +42,6 @@ const style = css`
       // const {store} = this.store();
       return this;
     }
-
-
   }
 
-Component.init(UIPipelineStage, 'ui-pipeline-stage', {attributes, properties});
+Component.init(UIPipelineStage, 'ui-pipeline-stage', { attributes, properties });

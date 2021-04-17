@@ -1,7 +1,7 @@
-import Component, {html, css} from '../script/Component.js';
+import Component, { html, css } from '../script/Component.js';
 import UIButtonIcon  from './button-icon.js';
 import UITooltip from './tooltip.js';
-import {updateChildrenAttribute} from '../script/DOM.js';
+import { updateChildrenAttribute } from '../script/DOM.js';
 
 const style = css`
   :host {
@@ -13,14 +13,14 @@ const style = css`
   }`;
 
 const attributes = {
-    text(root, value) {updateChildrenAttribute(root, 'ui-button-icon', 'text', value)},
-    mode(root, value) {updateChildrenAttribute(root, 'ui-button-icon', 'mode', value)},
-    content(root, value) {updateChildrenAttribute(root, 'ui-tooltip', 'content', value)},
-    x(root, value) {updateChildrenAttribute(root, 'ui-tooltip', 'x', value)},
-    y(root, value) {updateChildrenAttribute(root, 'ui-tooltip', 'y', value)}
+    text(root, value) { updateChildrenAttribute(root, 'ui-button-icon', 'text', value) },
+    mode(root, value) { updateChildrenAttribute(root, 'ui-button-icon', 'mode', value) },
+    content(root, value) { updateChildrenAttribute(root, 'ui-tooltip', 'content', value) },
+    x(root, value) { updateChildrenAttribute(root, 'ui-tooltip', 'x', value) },
+    y(root, value) { updateChildrenAttribute(root, 'ui-tooltip', 'y', value) }
   }
 const properties = {
-    disabled(root, value) {updateChildrenAttribute(root, 'ui-button', 'disabled', value)}
+    disabled(root, value) { updateChildrenAttribute(root, 'ui-button', 'disabled', value) }
   }
 
 /** {UIButtonTooltipIcon} @class
@@ -58,4 +58,4 @@ const properties = {
     }
   }
 
-Component.init(UIButtonTooltipIcon, 'ui-button-tooltip-icon', {attributes, properties});
+Component.init(UIButtonTooltipIcon, 'ui-button-tooltip-icon', { attributes, properties });

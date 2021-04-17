@@ -1,6 +1,6 @@
-import Component, {html, css, url} from '../script/Component.js';
-import {updateChildrenElement, pointerOffset, updateChildrenText} from '../script/DOM.js';
-import {drawRipple} from '../script/Material.js';
+import Component, { html, css, url } from '../script/Component.js';
+import { updateChildrenElement, pointerOffset, updateChildrenText } from '../script/DOM.js';
+import { drawRipple } from '../script/Material.js';
 import UIIcon from './icon.js';
 
 const style = css`
@@ -221,4 +221,4 @@ const properties = {}
     }
   }
 
-Component.init(UIInput, 'ui-input', {attributes, properties});
+Component.init(UIInput, 'ui-input', { attributes, properties });

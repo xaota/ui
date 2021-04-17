@@ -1,4 +1,4 @@
-export {html, css, url} from './Template.js';
+export { html, css, url } from './Template.js';
 
 const store = Symbol('store');
 const state = Symbol('state');
@@ -14,7 +14,7 @@ const state = Symbol('state');
       super();
       this[store] = null;
       this[state] = 'created';
-      this.attachShadow({mode});
+      this.attachShadow({ mode });
     }
 
   /** state @readonly */
@@ -37,9 +37,9 @@ const state = Symbol('state');
 
   /** event */
     event(event, detail = null) { // Отправка событий во внешний DOM // component.event('custom-event', {data: value})
-      const options = {bubbles: true, composed: true};
+      const options = { bubbles: true, composed: true };
       event = detail !== null || (!event.type && event.includes('-'))
-        ? new CustomEvent(event, {detail, ...options})
+        ? new CustomEvent(event, { detail, ...options })
         : typeof event === 'object' ? event : new Event(event);
       return this.dispatchEvent(event);
     }
@@ -133,7 +133,7 @@ const state = Symbol('state');
     }
 
   /** init @static */
-    static init(constructor, name, {attributes = {}, properties = {}}) { // сокращенная инициализация компонента
+    static init(constructor, name, { attributes = {}, properties = {} }) { // сокращенная инициализация компонента
       const fields = [...Object.keys(attributes), ...Object.keys(properties)];
 
       Object.defineProperties(constructor, {
@@ -179,7 +179,7 @@ const state = Symbol('state');
 /** / setAttribute */
   function setAttribute(prototype, attribute) {
     Object.defineProperty(prototype, attribute, {
-      get() {return this.getAttribute(attribute)},
+      get() { return this.getAttribute(attribute) },
       set(value) {
         value === null
           ? this.removeAttribute(attribute)
@@ -191,7 +191,7 @@ const state = Symbol('state');
 /** / setProperty */
   function setProperty(prototype, property) {
     Object.defineProperty(prototype, property, {
-      get() {return this.hasAttribute(property)},
+      get() { return this.hasAttribute(property) },
       set(value) {
         value === false // null?
           ? this.removeAttribute(property)

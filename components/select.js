@@ -1,5 +1,5 @@
-import Component, {html, css} from '../script/Component.js';
-import {updateChildrenText} from '../script/DOM.js';
+import Component, { html, css } from '../script/Component.js';
+import { updateChildrenText } from '../script/DOM.js';
 
 import UIInput    from './input.js';
 import UIDrop     from './drop.js';
@@ -72,4 +72,4 @@ const properties = {}
     }
   }
 
-Component.init(UISelect, 'ui-select', {attributes, properties});
+Component.init(UISelect, 'ui-select', { attributes, properties });

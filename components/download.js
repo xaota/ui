@@ -1,4 +1,4 @@
-import Component, {html, css} from '../script/Component.js';
+import Component, { html, css } from '../script/Component.js';
 import UIIcon from './icon.js';
 
 const attributes = {
@@ -69,8 +69,6 @@ const style = css`
       super.mount(node, attributes, properties);
       return this;
     }
-
-
   }
 
-Component.init(UIDownload, 'ui-download', {attributes, properties});
+Component.init(UIDownload, 'ui-download', { attributes, properties });

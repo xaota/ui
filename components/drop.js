@@ -1,5 +1,5 @@
-import Component, {html, css} from '../script/Component.js';
-import {updateChildrenProperty} from '../script/DOM.js';
+import Component, { html, css } from '../script/Component.js';
+import { updateChildrenProperty } from '../script/DOM.js';
 import UIDropItem from './drop-item.js';
 
 /**
@@ -110,14 +110,14 @@ const style = css`
 
 const attributes = {
   x() {},
-  y() {},
+  y() {}
 }
 const properties = {
   disabled() {},
   action() {},
   outside() {},
   inline() {},
-  visible(root, value) {updateChildrenProperty(root, 'ui-drop-item', 'visible', value)}
+  visible(root, value) { updateChildrenProperty(root, 'ui-drop-item', 'visible', value) }
 }
 
 /** Drop {UIDrop} @class @ui @component @tag <ui-drop />
@@ -198,4 +198,4 @@ const properties = {
     }
   }
 
-Component.init(UIDrop, 'ui-drop', {attributes, properties});
+Component.init(UIDrop, 'ui-drop', { attributes, properties });

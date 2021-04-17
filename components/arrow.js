@@ -1,12 +1,12 @@
-import Component, {html, css} from '../script/Component.js';
-import {cssVariable} from '../script/DOM.js';
+import Component, { html, css } from '../script/Component.js';
+import { cssVariable } from '../script/DOM.js';
 
 const attributes = {
-  length(root, value) {cssVariable(root.querySelector('div'), 'length', value)},
-  angle(root, value) {cssVariable(root.querySelector('div'), 'angle', value)},
+  length(root, value) { cssVariable(root.querySelector('div'), 'length', value) },
+  angle(root, value) { cssVariable(root.querySelector('div'), 'angle', value) },
   direction(root, value) {}, // none, forward?, backward, both
-  width(root, value) {cssVariable(root.querySelector('div'), 'width', value)},
-  size(root, value) {cssVariable(root.querySelector('div'), 'size', value)}
+  width(root, value) { cssVariable(root.querySelector('div'), 'width', value) },
+  size(root, value) { cssVariable(root.querySelector('div'), 'size', value) }
 };
 const properties = {};
 
@@ -78,8 +78,6 @@ const style = css`
       super.mount(node, attributes, properties);
       return this;
     }
-
-
   }
 
-Component.init(UIArrow, 'ui-arrow', {attributes, properties});
+Component.init(UIArrow, 'ui-arrow', { attributes, properties });

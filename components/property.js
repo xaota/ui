@@ -1,13 +1,13 @@
-import Component, {html, css} from '../script/Component.js';
-import {updateChildrenAttribute, updateChildrenText} from '../script/DOM.js';
+import Component, { html, css } from '../script/Component.js';
+import { updateChildrenAttribute, updateChildrenText } from '../script/DOM.js';
 import UIIcon from './icon.js';
 import UITooltip from './tooltip.js';
 
 const attributes = {
-  caption(root, value) {updateChildrenText(root, '#caption', value)},
-  addition(root, value) {updateChildrenText(root, '#addition', value)},
-  description(root, value) {updateChildrenText(root, '#description', value)},
-  info(root, value) {updateChildrenAttribute(root, 'ui-tooltip', 'content', value)}
+  caption(root, value) { updateChildrenText(root, '#caption', value) },
+  addition(root, value) { updateChildrenText(root, '#addition', value) },
+  description(root, value) { updateChildrenText(root, '#description', value) },
+  info(root, value) { updateChildrenAttribute(root, 'ui-tooltip', 'content', value) }
 }
 const properties = {}
 
@@ -83,8 +83,6 @@ const style = css`
       // const {store} = this.store();
       return this;
     }
-
-
   }
 
-Component.init(UIProperty, 'ui-property', {attributes, properties});
+Component.init(UIProperty, 'ui-property', { attributes, properties });

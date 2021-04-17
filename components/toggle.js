@@ -1,5 +1,5 @@
-import Component, {html, css} from '../script/Component.js';
-import {updateChildrenProperty, updateChildrenElement} from '../script/DOM.js';
+import Component, { html, css } from '../script/Component.js';
+import { updateChildrenProperty, updateChildrenElement } from '../script/DOM.js';
 
 const style = css`
   :host {
@@ -95,4 +95,4 @@ const properties = {
     }
   }
 
-Component.init(UIToggle, 'ui-toggle', {attributes, properties});
+Component.init(UIToggle, 'ui-toggle', { attributes, properties });

@@ -1,5 +1,5 @@
-import Component, {html, css} from '../script/Component.js';
-import {updateChildrenAttribute} from '../script/DOM.js';
+import Component, { html, css } from '../script/Component.js';
+import { updateChildrenAttribute } from '../script/DOM.js';
 
 const attributes = {
   avatar(root, value) {}
@@ -47,7 +47,7 @@ const style = css`
     */
     constructor(store) {
       super();
-      this.store({store});
+      this.store({ store });
     }
 
   /** Создание элемента в DOM (DOM доступен) / mount @lifecycle
@@ -57,11 +57,9 @@ const style = css`
     mount(node) {
       super.mount(node, attributes, properties);
 
-      const {store} = this.store();
+      const { store } = this.store();
       return this;
     }
-
-
   }
 
-Component.init(UISnippet, 'ui-snippet', {attributes, properties});
+Component.init(UISnippet, 'ui-snippet', { attributes, properties });

@@ -1,5 +1,5 @@
-import Component, {html, css} from '../script/Component.js';
-import {updateChildrenProperty, updateChildrenElement} from '../script/DOM.js';
+import Component, { html, css } from '../script/Component.js';
+import { updateChildrenProperty, updateChildrenElement } from '../script/DOM.js';
 
 const style = css`
   :host {
@@ -133,4 +133,4 @@ const properties = {
     }
   }
 
-Component.init(UIRadio, 'ui-radio', {attributes, properties});
+Component.init(UIRadio, 'ui-radio', { attributes, properties });

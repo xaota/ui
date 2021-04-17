@@ -1,4 +1,4 @@
-import Component, {html, css} from '../script/Component.js';
+import Component, { html, css } from '../script/Component.js';
 import $ from '../script/DOM.js';
 
 const attributes = {
@@ -47,19 +47,17 @@ const style = css`
           .writeText(this.value)
           .then(() => {
             console.log('copied!');
-            this.event('copy', {value: this.value, success: true});
+            this.event('copy', { value: this.value, success: true });
           })
           .catch(() => {
             console.error('copy error!');
-            this.event('copy', {value: this.value, success: false});
+            this.event('copy', { value: this.value, success: false });
           });
       });
 
       // const {store} = this.store();
       return this;
     }
-
-
   }
 
-Component.init(UICopy, 'ui-copy', {attributes, properties});
+Component.init(UICopy, 'ui-copy', { attributes, properties });

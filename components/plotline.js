@@ -1,5 +1,5 @@
-import Component, {html, css} from '../script/Component.js';
-import $, {clear, $$}         from '../script/DOM.js';
+import Component, { html, css } from '../script/Component.js';
+import $, { clear, $$ }         from '../script/DOM.js';
 import UIPipeline             from './pipeline.js';
 import UIBrick                from './brick.js';
 
@@ -7,13 +7,13 @@ const attributes = {
   stage(root, value) {
     const stages = parseInt(value) || 0;
     const pipelines = parseInt(this.pipeline) || 0;
-    manage.call(this, root, {pipelines, stages});
+    manage.call(this, root, { pipelines, stages });
   },
 
   pipeline(root, value) {
     const stages = parseInt(this.stage) || 0;
     const pipelines = parseInt(value) || 0;
-    manage.call(this, root, {pipelines, stages});
+    manage.call(this, root, { pipelines, stages });
   }
 };
 const properties = {};
@@ -56,14 +56,12 @@ const style = css`
       slot.addEventListener('slotchange', () => manageBricks.call(this, node));
       return this;
     }
-
-
   }
 
-Component.init(UIPlotline, 'ui-plotline', {attributes, properties});
+Component.init(UIPlotline, 'ui-plotline', { attributes, properties });
 
 /// #region [Private]
-function manage(root, {pipelines, stages}) {
+function manage(root, { pipelines, stages }) {
   const div = $('div', root);
   if (!div) return;
   clear(div);

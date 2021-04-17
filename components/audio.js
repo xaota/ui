@@ -1,5 +1,5 @@
-import Component, {html, css} from '../script/Component.js';
-import {updateChildrenAttribute} from '../script/DOM.js';
+import Component, { html, css } from '../script/Component.js';
+import { updateChildrenAttribute } from '../script/DOM.js';
 
 const style = css`
   :host {display: block}
@@ -44,4 +44,4 @@ const properties = {}
     }
   }
 
-Component.init(UIAudio, 'ui-audio', {attributes, properties});
+Component.init(UIAudio, 'ui-audio', { attributes, properties });

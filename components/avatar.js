@@ -1,5 +1,5 @@
-import Component, {html, css, url} from '../script/Component.js';
-import {updateChildrenAttribute, updateChildrenText} from '../script/DOM.js';
+import Component, { html, css, url } from '../script/Component.js';
+import { updateChildrenAttribute, updateChildrenText } from '../script/DOM.js';
 import UIText from './text.js';
 import UIIcon from './icon.js';
 
@@ -98,7 +98,7 @@ const properties = {}
     constructor(options) {
       super();
       if (!options) return;
-      if (!options.text) options = {text: options};
+      if (!options.text) options = { text: options };
       this.innerText = options.text;
       if (options.src)   this.src   = options.src;
       if (options.icon)  this.icon  = options.icon;
@@ -121,7 +121,7 @@ const properties = {}
     }
   }
 
-Component.init(UIAvatar, 'ui-avatar', {attributes, properties});
+Component.init(UIAvatar, 'ui-avatar', { attributes, properties });
 
 // #region [Private]
 /** setText */

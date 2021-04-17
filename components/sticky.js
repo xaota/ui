@@ -1,4 +1,4 @@
-import Component, {html, css} from '../script/Component.js';
+import Component, { html, css } from '../script/Component.js';
 
 const attributes = {};
 const properties = {};
@@ -71,4 +71,4 @@ const style = css`
     }
   }
 
-Component.init(UISticky, 'ui-sticky', {attributes, properties});
+Component.init(UISticky, 'ui-sticky', { attributes, properties });

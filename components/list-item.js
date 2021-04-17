@@ -1,6 +1,6 @@
-import Component, {html, css} from '../script/Component.js';
-import {drawRipple} from '../script/Material.js';
-import {pointerOffset} from '../script/DOM.js';
+import Component, { html, css } from '../script/Component.js';
+import { drawRipple } from '../script/Material.js';
+import { pointerOffset } from '../script/DOM.js';
 
 const style = css`
   :host {
@@ -118,4 +118,4 @@ const properties = {}
     }
   }
 
-Component.init(UIListItem, 'ui-list-item', {attributes, properties});
+Component.init(UIListItem, 'ui-list-item', { attributes, properties });

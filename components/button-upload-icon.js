@@ -1,7 +1,7 @@
-import Component, {html, css} from '../script/Component.js';
+import Component, { html, css } from '../script/Component.js';
 import UIButtonUpload from './button-upload.js';
 import UIIcon         from './icon.js';
-import {updateChildrenAttribute, updateChildrenProperty} from '../script/DOM.js';
+import { updateChildrenAttribute, updateChildrenProperty } from '../script/DOM.js';
 
 const style = css`
   :host {
@@ -48,4 +48,4 @@ const properties = {
     }
   }
 
-Component.init(UIButtonUploadIcon, 'ui-button-upload-icon', {attributes, properties});
+Component.init(UIButtonUploadIcon, 'ui-button-upload-icon', { attributes, properties });

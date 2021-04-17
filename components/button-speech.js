@@ -1,7 +1,7 @@
-import Component, {html, css} from '../script/Component.js';
+import Component, { html, css } from '../script/Component.js';
 import UIButton from './button.js';
 import UIIcon   from './icon.js';
-import {updateChildrenAttribute, updateChildrenProperty, updateChildrenText} from '../script/DOM.js';
+import { updateChildrenAttribute, updateChildrenProperty, updateChildrenText } from '../script/DOM.js';
 
 const toggle = Symbol('toggle');
 const start  = Symbol('start');
@@ -96,4 +96,4 @@ const properties = {
     }
   }
 
-Component.init(UIButtonSpeech, 'ui-button-speech', {attributes, properties});
+Component.init(UIButtonSpeech, 'ui-button-speech', { attributes, properties });

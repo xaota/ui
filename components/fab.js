@@ -1,4 +1,4 @@
-import Component, {html, css} from '../script/Component.js';
+import Component, { html, css } from '../script/Component.js';
 import UIIcon from './icon.js';
 
 const style = css`
@@ -73,4 +73,4 @@ const properties = {}
     }
   }
 
-Component.init(UIFAB, 'ui-fab', {attributes, properties});
+Component.init(UIFAB, 'ui-fab', { attributes, properties });

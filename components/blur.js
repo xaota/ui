@@ -1,4 +1,4 @@
-import Component, {html, css} from '../script/Component.js';
+import Component, { html, css } from '../script/Component.js';
 
 const attributes = {};
 const properties = {};
@@ -32,7 +32,7 @@ const style = css`
     */
     constructor(store) {
       super();
-      this.store({store});
+      this.store({ store });
     }
 
   /** Создание элемента в DOM (DOM доступен) / mount @lifecycle
@@ -42,11 +42,9 @@ const style = css`
     mount(node) {
       super.mount(node, attributes, properties);
 
-      const {store} = this.store();
+      const { store } = this.store();
       return this;
     }
-
-
   }
 
-Component.init(UIBlur, 'ui-blur', {attributes, properties});
+Component.init(UIBlur, 'ui-blur', { attributes, properties });

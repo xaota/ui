@@ -1,5 +1,5 @@
-import Component, {html, css} from '../script/Component.js';
-import {cssVariable, updateChildrenAttribute} from '../script/DOM.js';
+import Component, { html, css } from '../script/Component.js';
+import { cssVariable, updateChildrenAttribute } from '../script/DOM.js';
 
 const style = css`
   :host {
@@ -67,9 +67,9 @@ const style = css`
   }`;
 
 const attributes = {
-  min(root, value) {updateChildrenAttribute(root, 'meter', 'min', value)},
-  max(root, value) {updateChildrenAttribute(root, 'meter', 'max', value)},
-  value(root, value) {updateChildrenAttribute(root, 'meter', 'value', value)}
+  min(root, value) { updateChildrenAttribute(root, 'meter', 'min', value) },
+  max(root, value) { updateChildrenAttribute(root, 'meter', 'max', value) },
+  value(root, value) { updateChildrenAttribute(root, 'meter', 'value', value) }
   // 'mode', 'color', 'background', 'size', 'angle', 'low', 'high', 'optium', 'stroke', 'speed'
 }
 const properties = {
@@ -102,7 +102,7 @@ const speed = 1400;
       let current = 0;
       cssVariable(this, 'color', colors.join(','));
 
-      var previous;
+      let previous;
       const frame = callback.bind(this);
       this.#animation = window.requestAnimationFrame(frame);
 
@@ -141,4 +141,4 @@ const speed = 1400;
     }
   }
 
-Component.init(UIMeter, 'ui-meter', {attributes, properties});
+Component.init(UIMeter, 'ui-meter', { attributes, properties });

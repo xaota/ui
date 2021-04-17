@@ -1,5 +1,5 @@
-import Component, {html, css} from '../script/Component.js';
-import {updateChildrenAttribute, updateChildrenText} from '../script/DOM.js';
+import Component, { html, css } from '../script/Component.js';
+import { updateChildrenAttribute, updateChildrenText } from '../script/DOM.js';
 
 import UIInput    from './input.js';
 import UIDrop     from './drop.js';
@@ -60,4 +60,4 @@ const properties = {
     }
   }
 
-Component.init(UISearchDrop, 'ui-search-drop', {attributes, properties});
+Component.init(UISearchDrop, 'ui-search-drop', { attributes, properties });

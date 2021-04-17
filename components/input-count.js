@@ -1,7 +1,7 @@
-import Component, {html, css} from '../script/Component.js';
+import Component, { html, css } from '../script/Component.js';
 import UIButtonIcon from './button-icon.js';
 import UIInput      from './input.js';
-import {updateChildrenProperty, updateChildrenAttribute} from '../script/DOM.js';
+import { updateChildrenProperty, updateChildrenAttribute } from '../script/DOM.js';
 
 const style = css`
   :host {
@@ -81,7 +81,7 @@ const properties = {
     constructor(options) {
       super();
       if (!options) return;
-      if (typeof options !== 'object') options = {label: options};
+      if (typeof options !== 'object') options = { label: options };
 
       if (options.label) this.innerHTML = options.label;
       ['max', 'min', 'step', 'value'].forEach(e => { if (options[e]) this[e] = options[e] });
@@ -104,4 +104,4 @@ const properties = {
     }
   }
 
-Component.init(UIInputCount, 'ui-input-count', {attributes, properties});
+Component.init(UIInputCount, 'ui-input-count', { attributes, properties });

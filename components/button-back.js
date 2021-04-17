@@ -1,4 +1,4 @@
-import Component, {html, css} from '../script/Component.js';
+import Component, { html, css } from '../script/Component.js';
 import UIButton from './button.js';
 import UIIcon   from './icon.js';
 
@@ -22,7 +22,7 @@ const properties = {}
       <template>
         <style>${style}</style>
         <ui-button>
-          <ui-icon>keyboard_arrow_left</ui-icon>
+          <ui-icon>arrow-keyboard-left</ui-icon>
           <slot></slot>
         </ui-button>
       </template>`;
@@ -44,4 +44,4 @@ const properties = {}
     }
   }
 
-Component.init(UIButtonBack, 'ui-button-back', {attributes, properties});
+Component.init(UIButtonBack, 'ui-button-back', { attributes, properties });

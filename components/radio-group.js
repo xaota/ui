@@ -1,4 +1,4 @@
-import Component, {html, css} from '../script/Component.js';
+import Component, { html, css } from '../script/Component.js';
 import UIRadio from './radio.js';
 
 const style = css`
@@ -92,7 +92,7 @@ const properties = {}
         mutations.forEach(mutation => {
           const radio = mutation.target;
           const conditions = [
-            mutation.type === "attributes",
+            mutation.type === 'attributes',
             mutation.attributeName === 'checked',
             UIRadio.is(radio)
           ];
@@ -123,7 +123,7 @@ const properties = {}
     }
   }
 
-Component.init(UIRadioGroup, 'ui-radio-group', {attributes, properties});
+Component.init(UIRadioGroup, 'ui-radio-group', { attributes, properties });
 
 // #region [Private]
 /** / setValue */

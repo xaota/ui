@@ -4,7 +4,7 @@ function raw(strings) {
 
 export function html(...args) {
   return new DOMParser()
-    .parseFromString(raw(args), "text/html")
+    .parseFromString(raw(args), 'text/html')
     .getElementsByTagName('template')[0];
 };
 

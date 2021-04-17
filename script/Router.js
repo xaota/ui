@@ -1,4 +1,4 @@
-import {clear} from './DOM.js';
+import { clear } from './DOM.js';
 
 /** {Router} Роутинг и HistoryApi @class @export @default
   * @property {object} routes список роутов
@@ -66,4 +66,3 @@ import {clear} from './DOM.js';
       component?.callback?.(element, ...args);
     }
   }
-

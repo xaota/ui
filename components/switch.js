@@ -1,5 +1,5 @@
-import Component, {html, css} from '../script/Component.js';
-import {updateChildrenProperty, updateChildrenElement, updateChildrenText} from '../script/DOM.js';
+import Component, { html, css } from '../script/Component.js';
+import { updateChildrenProperty, updateChildrenElement, updateChildrenText } from '../script/DOM.js';
 import UIText from './text.js';
 
 const style = css`
@@ -154,7 +154,7 @@ const properties = {
         radio.addEventListener('change', () => {
           if (!radio.checked) return; // !
           this.value = radio.id;
-          this.event('change', {value: radio.id});
+          this.event('change', { value: radio.id });
         });
       });
 
@@ -163,4 +163,4 @@ const properties = {
     }
   }
 
-Component.init(UISwitch, 'ui-switch', {attributes, properties});
+Component.init(UISwitch, 'ui-switch', { attributes, properties });

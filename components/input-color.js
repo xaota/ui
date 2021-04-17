@@ -1,4 +1,4 @@
-import Component, {html, css} from '../script/Component.js';
+import Component, { html, css } from '../script/Component.js';
 import UIPaper    from './paper.js';
 import UIDrop     from './drop.js';
 import UITabs     from './tabs.js';
@@ -216,4 +216,4 @@ const properties = {}
     }
   }
 
-Component.init(UIInputColor, 'ui-input-color', {attributes, properties});
+Component.init(UIInputColor, 'ui-input-color', { attributes, properties });

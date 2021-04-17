@@ -1,5 +1,5 @@
-import Component, {html, css} from '../script/Component.js';
-import {updateChildrenText} from '../script/DOM.js';
+import Component, { html, css } from '../script/Component.js';
+import { updateChildrenText } from '../script/DOM.js';
 import Deferred from 'javascript-std-lib/deferred.js';
 import UICaption from './caption.js';
 import UIButton  from './button.js';
@@ -98,7 +98,7 @@ const properties = {}
 
   /** */
     action(label, callback) {
-      const button = new UIButton({label, mode: 'primary', text: ''});
+      const button = new UIButton({ label, mode: 'primary', text: '' });
       button.addEventListener('click', callback.bind(this), false);
       button.slot = 'action';
       this.appendChild(button);
@@ -138,7 +138,7 @@ const properties = {}
       }
 
       const init = () => callback.call(this, this.shadowRoot);
-      if (callback) this.addEventListener('transitionend', _ => setTimeout(init, 50), {once: true});
+      if (callback) this.addEventListener('transitionend', _ => setTimeout(init, 50), { once: true });
       return this.promise;
     }
 
@@ -180,8 +180,6 @@ const properties = {}
       if (close) this.close();
       return this;
     }
-
-
   }
 
-Component.init(UIDialog, 'ui-dialog', {attributes, properties});
+Component.init(UIDialog, 'ui-dialog', { attributes, properties });

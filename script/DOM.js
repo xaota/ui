@@ -80,6 +80,19 @@
     return node;
   }
 
+/** / slottedValue */
+  export function slottedValue(slot) {
+    let self = slot;
+    do {
+      self = self.assignedNodes()[0];
+    } while (self instanceof HTMLSlotElement);
+
+    const value = self?.nodeValue;
+    if (!value) return;
+
+    return value.trim();
+  }
+
 /** */
   export function pointerOffset(element, event) {
     const target = event.target;

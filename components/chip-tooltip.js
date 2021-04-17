@@ -1,5 +1,5 @@
-import Component, {html, css} from '../script/Component.js';
-import {updateChildrenAttribute, updateChildrenProperty} from '../script/DOM.js';
+import Component, { html, css } from '../script/Component.js';
+import { updateChildrenAttribute, updateChildrenProperty } from '../script/DOM.js';
 import UIChip    from './chip.js';
 import UITooltip from './tooltip.js';
 
@@ -60,4 +60,4 @@ const properties = {
     }
   }
 
-Component.init(UIChipTooltip, 'ui-chip-tooltip', {attributes, properties});
+Component.init(UIChipTooltip, 'ui-chip-tooltip', { attributes, properties });

@@ -1,6 +1,6 @@
-import Component, {html, css} from '../script/Component.js';
-import {updateChildrenElement, pointerOffset, updateChildrenText} from '../script/DOM.js';
-import {drawRipple} from '../script/Material.js';
+import Component, { html, css } from '../script/Component.js';
+import { updateChildrenElement, pointerOffset, updateChildrenText } from '../script/DOM.js';
+import { drawRipple } from '../script/Material.js';
 import UIIcon from './icon.js';
 
 const style = css`
@@ -181,7 +181,7 @@ const properties = {
   /** */
     right() {},
   /** */
-    disabled(root, value) { updateChildrenElement(root, 'textarea', 'disabled', [true, ''].includes(value)) },
+    disabled(root, value) { updateChildrenElement(root, 'textarea', 'disabled', [true, ''].includes(value)) }
   }
 
 /** {UITextarea} @class
@@ -233,4 +233,4 @@ const properties = {
     }
   }
 
-Component.init(UITextarea, 'ui-textarea', {attributes, properties});
+Component.init(UITextarea, 'ui-textarea', { attributes, properties });

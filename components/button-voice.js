@@ -1,6 +1,6 @@
-import Component, {html, css} from '../script/Component.js';
+import Component, { html, css } from '../script/Component.js';
 import UIButtonIcon from './button-icon.js';
-import {updateChildrenAttribute, updateChildrenProperty, updateChildrenText} from '../script/DOM.js';
+import { updateChildrenAttribute, updateChildrenProperty, updateChildrenText } from '../script/DOM.js';
 
 const toggle      = Symbol('toggle');
 const start       = Symbol('start');
@@ -110,8 +110,8 @@ const properties = {
           text = [...event.results].map(e => e[0].transcript).join(' ');
         }
       }
-      this.event('recognize', {text});
+      this.event('recognize', { text });
     }
   }
 
-Component.init(UIButtonVoice, 'ui-button-voice', {attributes, properties});
+Component.init(UIButtonVoice, 'ui-button-voice', { attributes, properties });

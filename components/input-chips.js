@@ -1,8 +1,8 @@
-import Component, {html, css} from '../script/Component.js';
+import Component, { html, css } from '../script/Component.js';
 import UIInput       from './input.js';
 import UIChip        from './chip.js';
 import UIChipTooltip from './chip-tooltip.js';
-import {updateChildrenText, updateChildrenAttribute, updateChildrenProperty, cssVariable} from '../script/DOM.js';
+import { updateChildrenText, updateChildrenAttribute, updateChildrenProperty, cssVariable } from '../script/DOM.js';
 
 const style = css`
   :host {
@@ -36,7 +36,7 @@ const attributes = {
   }
 const properties = {
   /** */
-    disabled(root, value) {updateChildrenProperty(root, 'ui-input', 'disabled', value)}
+    disabled(root, value) { updateChildrenProperty(root, 'ui-input', 'disabled', value) }
   }
 
 /** Поле ввода списка тегов @class {UIInputChips} @extends {Component}
@@ -90,14 +90,14 @@ const properties = {
     }
   }
 
-Component.init(UIInputChips, 'ui-input-chips', {attributes, properties});
+Component.init(UIInputChips, 'ui-input-chips', { attributes, properties });
 
 // #region [Private]
-/** / calculateValue*/
+/** / calculateValue */
   function calculateValue(input) {
     const value = (input.value || '').trim();
     if (!value) return;
-    input.value = ``;
+    input.value = '';
     this.append(value);
   }
 

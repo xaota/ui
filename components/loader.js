@@ -1,4 +1,4 @@
-import Component, {html, css} from '../script/Component.js';
+import Component, { html, css } from '../script/Component.js';
 import UIMeter from './meter.js';
 
 const style = css`
@@ -40,4 +40,4 @@ const properties = {
     }
   }
 
-Component.init(UILoader, 'ui-loader', {attributes, properties});
+Component.init(UILoader, 'ui-loader', { attributes, properties });

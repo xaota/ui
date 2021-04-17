@@ -1,7 +1,7 @@
-import Component, {html, css} from '../script/Component.js';
+import Component, { html, css } from '../script/Component.js';
 import UIButtonUploadIcon from './button-upload-icon.js';
 import UITooltip      from './tooltip.js';
-import {updateChildrenAttribute, updateChildrenProperty} from '../script/DOM.js';
+import { updateChildrenAttribute, updateChildrenProperty } from '../script/DOM.js';
 
 const style = css`
   :host {
@@ -29,7 +29,7 @@ const properties = {
   /** */
     disabled(root, value) { updateChildrenProperty(root, 'ui-button-upload',  'disabled', value) },
   /** */
-    multiple(root, value) { updateChildrenProperty(root, 'ui-button-upload', 'multiple', value) },
+    multiple(root, value) { updateChildrenProperty(root, 'ui-button-upload', 'multiple', value) }
   }
 
 /** {UIButtonUploadTooltipIcon} @class
@@ -67,4 +67,4 @@ const properties = {
     }
   }
 
-Component.init(UIButtonUploadTooltipIcon, 'ui-button-upload-tooltip-icon', {attributes, properties});
+Component.init(UIButtonUploadTooltipIcon, 'ui-button-upload-tooltip-icon', { attributes, properties });

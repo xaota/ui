@@ -1,5 +1,5 @@
-import Component, {html, css} from '../script/Component.js';
-import {updateChildrenHTML} from '../script/DOM.js';
+import Component, { html, css } from '../script/Component.js';
+import { updateChildrenHTML } from '../script/DOM.js';
 
 const style = css`
   :host {
@@ -197,4 +197,4 @@ const properties = {}
     }
   }
 
-Component.init(UITooltip, 'ui-tooltip', {attributes, properties});
+Component.init(UITooltip, 'ui-tooltip', { attributes, properties });

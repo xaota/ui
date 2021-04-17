@@ -1,5 +1,5 @@
-import Component, {html, css} from '../script/Component.js';
-import {clear} from '../script/DOM.js';
+import Component, { html, css } from '../script/Component.js';
+import { clear } from '../script/DOM.js';
 import UIButton from './button.js';
 import UIIcon from './icon.js';
 
@@ -65,7 +65,7 @@ const style = css`
     }
   }
 
-Component.init(UIPagination, 'ui-pagination', {attributes, properties});
+Component.init(UIPagination, 'ui-pagination', { attributes, properties });
 
 // #region [Private]
 function createContent(node, pages, current) {
@@ -75,7 +75,7 @@ function createContent(node, pages, current) {
   if (!root) return;
 
   current = getCurrent(current);
-  const buttons = createButtons(pages, current, page => this.event('change', {page}));
+  const buttons = createButtons(pages, current, page => this.event('change', { page }));
 
   clear(root);
   buttons.forEach(b => root.appendChild(b));
@@ -106,7 +106,7 @@ function createButtons(length, current, callback) {
         // если пропущено не более 2х страниц - покажем их
         while (skip--) {
           const label = index - skip;
-          const button = new UIButton({text: 'outline', label});
+          const button = new UIButton({ text: 'outline', label });
           button.addEventListener('click', () => callback(label));
           buttons.push(button);
         }
@@ -114,10 +114,10 @@ function createButtons(length, current, callback) {
     }
 
     skip = 0;
-    const mode = index === current ? "primary" : "";
+    const mode = index === current ? 'primary' : '';
     const disabled = index === current;
     const label = index + 1;
-    const button = new UIButton({text: 'outline', label, mode, disabled});
+    const button = new UIButton({ text: 'outline', label, mode, disabled });
     if (!disabled) button.addEventListener('click', () => callback(label));
     buttons.push(button);
   });

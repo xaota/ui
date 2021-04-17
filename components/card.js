@@ -1,4 +1,4 @@
-import Component, {html, css} from '../script/Component.js';
+import Component, { html, css } from '../script/Component.js';
 
 const style = css`
   :host {
@@ -57,4 +57,4 @@ const properties = {}
     }
   }
 
-Component.init(UICard, 'ui-card', {attributes, properties});
+Component.init(UICard, 'ui-card', { attributes, properties });

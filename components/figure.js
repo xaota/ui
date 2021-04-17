@@ -1,4 +1,4 @@
-import Component, {html, css} from '../script/Component.js';
+import Component, { html, css } from '../script/Component.js';
 
 const style = css`
   :host {
@@ -49,4 +49,4 @@ const properties = {}
     }
   }
 
-Component.init(UIFigure, 'ui-figure', {attributes, properties});
+Component.init(UIFigure, 'ui-figure', { attributes, properties });

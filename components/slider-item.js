@@ -1,4 +1,4 @@
-import Component, {html, css} from '../script/Component.js';
+import Component, { html, css } from '../script/Component.js';
 
 const style = css`
   :host {
@@ -47,4 +47,4 @@ const properties = {}
     }
   }
 
-Component.init(UISliderItem, 'ui-slider-item', {attributes, properties});
+Component.init(UISliderItem, 'ui-slider-item', { attributes, properties });
