@@ -1,6 +1,8 @@
 import Component, { html, css, url } from '../script/Component.js';
 import { updateChildrenAttribute, updateChildrenText } from '../script/DOM.js';
+// eslint-disable-next-line no-unused-vars
 import UIText from './text.js';
+// eslint-disable-next-line no-unused-vars
 import UIIcon from './icon.js';
 
 const style = css`
@@ -64,8 +66,7 @@ const style = css`
 const attributes = {
   /** size */
     size(root, value) {
-      if (value === null) return;
-      this.style.setProperty('--size', value)
+      this.style.setProperty('--size', value ?? '')
     },
   /** src */
     src(root, value) { updateChildrenAttribute(root, 'img', 'src', value) },

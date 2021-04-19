@@ -1,8 +1,12 @@
 import Component, { html, css } from '../script/Component.js';
+import { updateChildrenAttribute } from '../script/DOM.js';
 // eslint-disable-next-line no-unused-vars
 import UINumeric from './numeric.js';
 
-const attributes = {};
+const attributes = {
+/** / precision */
+  precision(root, value) { updateChildrenAttribute(root, 'ui-numeric', 'precision', value) }
+};
 const properties = {};
 
 const style = css`

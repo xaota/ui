@@ -83,6 +83,7 @@ const state = Symbol('state');
   /** Создание элемента в DOM (DOM доступен) / mount @lifecycle
     * @param {ShadowRoot} node ShadowRoot узел элемента
     * @param {object} attributes функции, вызываемые при изменении отслеживаемых атрибутов
+    * @param {object} properties функции, вызываемые при изменении отслеживаемых свойств
     * @return {Component} @this
     */
     mount(node, attributes = {}, properties = {}) { // самая ходовая функция, вешать внуренние события здесь и т д (может быть недоступен shadowRoot дочерних веб-компонент)
@@ -161,6 +162,7 @@ const state = Symbol('state');
         * @param {string} current  Устанавливаемое значение
         */
       Object.defineProperty(constructor.prototype, 'attributeChangedCallback', {
+      /** / value */
         value(name, previous, current) {
           const root = this.shadowRoot;
           if (current === previous) return;
@@ -179,7 +181,9 @@ const state = Symbol('state');
 /** / setAttribute */
   function setAttribute(prototype, attribute) {
     Object.defineProperty(prototype, attribute, {
-      get() { return this.getAttribute(attribute) },
+    /** / */
+      get() { return this.getAttribute(attribute) || undefined },
+    /** / */
       set(value) {
         value === null
           ? this.removeAttribute(attribute)
@@ -191,7 +195,9 @@ const state = Symbol('state');
 /** / setProperty */
   function setProperty(prototype, property) {
     Object.defineProperty(prototype, property, {
+    /** / */
       get() { return this.hasAttribute(property) },
+    /** / */
       set(value) {
         value === false // null?
           ? this.removeAttribute(property)

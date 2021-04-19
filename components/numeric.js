@@ -3,9 +3,10 @@ import $, { updateChildrenText, slottedValue } from '../script/DOM.js';
 
 const attributes = {
 /** / label */
-  label(root, value) { updateChildrenText(root, '#label', value); }
+  label(root, value) { updateChildrenText(root, '#label', value); },
+/** / precision */
+  precision(root) { this.render(root); }
 
-// precision
 // no-zero
 // sup, sub
 // decimal
@@ -52,17 +53,24 @@ const style = css`
     */
     mount(node) {
       super.mount(node, attributes, properties);
-      /** @type {HTMLSpanElement} */
-      const value = $('#value', node);
-
       /** @type {HTMLSlotElement} */
       const slot = $('slot', node);
-      slot.addEventListener('slotchange', () => {
-        const text = slottedValue(slot);
-        const data = numeric(text);
-        value.innerText = data;
-      });
+      slot.addEventListener('slotchange', () => this.render(node));
       return this;
+    }
+
+  /** / render */
+    render(node) {
+      /** @type {HTMLSlotElement} */
+      const slot = $('slot', node);
+      /** @type {HTMLSpanElement} */
+      const value = $('#value', node);
+      if (!slot || !value) return;
+      const precision = Number.parseInt(this.precision);
+
+      const text = slottedValue(slot);
+      const data = numeric(text, Number.isNaN(precision) ? undefined : precision);
+      value.innerText = data;
     }
   }
 

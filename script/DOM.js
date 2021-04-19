@@ -27,7 +27,7 @@
   export function updateChildrenAttribute(root, selector, attribute, value) {
     const children = $(selector, root);
     if (!children) return;
-    const remove = value === null || value === false;
+    const remove = value === null || value === undefined || value === false;
     remove
       ? children.removeAttribute(attribute)
       : children.setAttribute(attribute, value);

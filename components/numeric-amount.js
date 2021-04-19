@@ -23,7 +23,9 @@ const attributes = {
         data = temp.textContent;
       };
       updateChildrenAttribute(root, 'ui-numeric', 'label', data);
-    }
+    },
+  /** / precision */
+    precision(root, value) { updateChildrenAttribute(root, 'ui-numeric', 'precision', value) }
 };
 const properties = {};
 

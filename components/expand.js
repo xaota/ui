@@ -31,15 +31,15 @@ const style = css`
     color: gray;
     margin-right: 2em;
   }
-  header:after {
-    content: 'down';
+  header > ui-icon {
     position: absolute;
     right: 1em;
     top: 1em;
     cursor: pointer;
+    transition: transform 0.3s ease;
   }
-  div.root.expand header:after {
-    content: 'up';
+  div.root.expand header > ui-icon {
+    transform: rotate(180deg);
   }
   slot {
     display: block;
@@ -59,7 +59,9 @@ const style = css`
   }`;
 
 const attributes = {
+/** / */
   summary(root, value) { updateChildrenText(root, 'header > p.summary', (value || '').trim().split('\n')[0]) },
+/** / */
   description(root, value) { updateChildrenText(root, 'header > p.description', (value || '').trim().split('\n')[0]) }
 }
 const properties = {
@@ -77,6 +79,7 @@ const properties = {
           <header>
             <p class="summary"></p>
             <p class="description"></p>
+            <ui-icon>arrow-up</ui-icon>
           </header>
           <slot></slot>
         </div>
