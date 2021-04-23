@@ -1,6 +1,6 @@
 {
   "name": "@xaota/ui",
-  "version": "1.0.0",
+  "version": "0.9.0",
   "description": "",
   "main": "./index.js",
   "exports": {
@@ -11,12 +11,26 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "echo \"Error: no start specified\" && exit 1",
-    "lint": "./node_modules/eslint/bin/eslint.js ."
+    "lint": "./node_modules/eslint/bin/eslint.js .",
+    "clear": "rm -rf node_modules package-lock.json"
   },
-  "repository": {},
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xaota/ui.git"
+  },
+  "keywords": [
+    "api",
+    "storage",
+    "javascript",
+    "browser",
+    "es-module"
+  ],
   "author": "https://github.com/xaota",
   "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/xaota/ui/issues"
+  },
+  "homepage": "https://github.com/xaota/ui#readme",
   "dependencies": {
     "javascript-std-lib": "latest"
   },
