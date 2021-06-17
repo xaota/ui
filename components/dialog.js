@@ -1,6 +1,6 @@
 import Component, { html, css } from '../script/Component.js';
 import { updateChildrenText } from '../script/DOM.js';
-import Deferred from 'javascript-std-lib/deferred.js';
+import Deferred from 'javascript-toolbox/library/Deferred.js';
 import UIButton  from './button.js';
 // eslint-disable-next-line no-unused-vars
 import UICaption from './caption.js';

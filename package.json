@@ -1,6 +1,6 @@
 {
   "name": "@xaota/ui",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "description": "",
   "main": "./index.js",
   "exports": {
@@ -33,7 +33,7 @@
   },
   "homepage": "https://github.com/xaota/ui#readme",
   "dependencies": {
-    "javascript-std-lib": "latest"
+    "javascript-toolbox": "^1.1.1"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
