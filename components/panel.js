@@ -15,6 +15,10 @@ const style = css`
     background: var(--background-panel);
   }
 
+  :host([center]) {
+    text-align: center;
+  }
+
   div.root {
     display: flex;
     flex-direction: column;

@@ -14,15 +14,8 @@ export const CURRENCIES = {
 const attributes = {
   /** / label */
     label(root, value) {
-      const label = value?.toUpperCase() || '';
-      const html = (CURRENCIES[label] || label)?.trim() || '';
-      let data = html;
-      if (html.startsWith('&#') && html.slice(-1) === ';') {
-        const temp = document.createElement('span');
-        temp.innerHTML = html;
-        data = temp.textContent;
-      };
-      updateChildrenAttribute(root, 'ui-numeric', 'label', data);
+      const label = currency(value);
+      updateChildrenAttribute(root, 'ui-numeric', 'label', label);
     },
   /** / precision */
     precision(root, value) { updateChildrenAttribute(root, 'ui-numeric', 'precision', value) }
@@ -41,8 +34,18 @@ const style = css`
     static template = html`
       <template>
         <style>${style}</style>
-        <ui-numeric><slot></slot></ui-numeric>
+        <ui-numeric precision="2"><slot></slot></ui-numeric>
       </template>`;
+
+  /** Создание компонента {UINumericAmount} @constructor
+    * @param {number} amount сумма
+    * @param {string} currency валюта
+    */
+    constructor(amount, currency) {
+      super();
+      if (amount !== undefined) this.innerText = amount.toString();
+      if (currency) this.label = currency;
+    }
 
   /** Создание элемента в DOM (DOM доступен) / mount @lifecycle
     * @param {ShadowRoot} node корневой узел элемента
@@ -54,3 +57,16 @@ const style = css`
   }
 
 Component.init(UINumericAmount, 'ui-numeric-amount', { attributes, properties });
+
+/** Знак валюты / currency @export */
+  export function currency(value) {
+    const label = value?.toUpperCase() || '';
+    const html = (CURRENCIES[label] || label)?.trim() || '';
+    let data = html;
+    if (html.startsWith('&#') && html.slice(-1) === ';') {
+      const temp = document.createElement('span');
+      temp.innerHTML = html;
+      data = temp.textContent;
+    };
+    return data;
+  }

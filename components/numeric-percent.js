@@ -24,6 +24,14 @@ const style = css`
         <ui-numeric label="%"><slot></slot></ui-numeric>
       </template>`;
 
+  /** Создание компонента {UINumericPercent} @constructor
+    * @param {number} value устанавливаемое значение
+    */
+    constructor(value) {
+      super();
+      if (value !== undefined) this.innerText = value;
+    }
+
   /** Создание элемента в DOM (DOM доступен) / mount @lifecycle
     * @param {ShadowRoot} node корневой узел элемента
     * @return {UINumericPercent} @this текущий компонент

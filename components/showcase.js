@@ -14,7 +14,10 @@ const style = css`
     justify-content: space-around;
     align-items: stretch;
     flex-wrap: wrap;
-    row-gap: var(--padding-showcase, 1rem);
+    gap: var(--padding-showcase, 1rem);
+  }
+  :host([align="left"]) slot {
+    justify-content: left;
   }`;
 
 /** Витрина {Showcase} @class @ui @component <ui-showcase />

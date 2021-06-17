@@ -1,4 +1,5 @@
 import Component, { html, css } from '../script/Component.js';
+// eslint-disable-next-line no-unused-vars
 import UIIcon from './icon.js';
 
 const style = css`
@@ -69,7 +70,8 @@ const properties = {}
     * @return {Component} @this {UIFAB} текущий компонент
     */
     mount(node) {
-      return super.mount(node, attributes, properties);
+      super.mount(node, attributes, properties);
+      return this;
     }
   }
 

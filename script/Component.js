@@ -41,7 +41,8 @@ const state = Symbol('state');
       event = detail !== null || (!event.type && event.includes('-'))
         ? new CustomEvent(event, { detail, ...options })
         : typeof event === 'object' ? event : new Event(event);
-      return this.dispatchEvent(event);
+      this.dispatchEvent(event);
+      return this;
     }
 
   /** connectedCallback */
@@ -50,7 +51,8 @@ const state = Symbol('state');
       if (this.shadowRoot.firstChild) return; // ! loaded @TODO: перенос узла
 
       const template = this.constructor.template.content.cloneNode(true);
-      this.ready(template).attach(template);
+      this.ready(template)
+      this.attach(template);
       this[state] = 'attached';
       this.mount(this.shadowRoot);
       this[state] = 'mounted';
@@ -93,8 +95,8 @@ const state = Symbol('state');
       return this;
     }
 
-  /** render */
-    render(node) { // перерендеринг компонента, если требуется
+  /** перерендеринг компонента, если требуется / render */
+    render(node) {
       return this;
     }
 

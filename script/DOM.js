@@ -88,8 +88,7 @@
     } while (self instanceof HTMLSlotElement);
 
     const value = self?.nodeValue;
-    if (!value) return;
-
+    if (value === undefined || value === null) return;
     return value.trim();
   }
 

@@ -12,14 +12,14 @@ const style = css`
     width: 100%;
   }`;
 
-const attributes = {
+  const attributes = {
     text(root, value) { updateChildrenAttribute(root, 'ui-button-icon', 'text', value) },
     mode(root, value) { updateChildrenAttribute(root, 'ui-button-icon', 'mode', value) },
     content(root, value) { updateChildrenAttribute(root, 'ui-tooltip', 'content', value) },
     x(root, value) { updateChildrenAttribute(root, 'ui-tooltip', 'x', value) },
     y(root, value) { updateChildrenAttribute(root, 'ui-tooltip', 'y', value) }
   }
-const properties = {
+  const properties = {
     disabled(root, value) { updateChildrenAttribute(root, 'ui-button', 'disabled', value) }
   }
 

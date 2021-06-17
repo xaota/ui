@@ -1,8 +1,10 @@
 import Component, { html, css } from '../script/Component.js';
 import { updateChildrenText } from '../script/DOM.js';
+// eslint-disable-next-line no-unused-vars
 import UIIcon from './icon.js';
 
 const attributes = {
+/** / icon */
   icon(root, value) { updateChildrenText(root, 'ui-icon', value) }
 };
 const properties = {};
@@ -15,6 +17,7 @@ const style = css`
     padding: 0.4em;
     cursor: pointer;
     position: relative;
+    box-sizing: border-box;
   }
   :host(:hover) {
     border-color: var(--color-edge-accent);
@@ -23,6 +26,9 @@ const style = css`
     display: block;
     height: 100%;
     text-align: center;
+  }
+  :host(:empty) slot {
+    min-width: 1rem;
   }
   ui-icon {
     position: absolute;
@@ -47,12 +53,6 @@ const style = css`
         <slot></slot>
         <ui-icon></ui-icon>
       </template>`;
-
-  /** Создание компонента {UIShowCase} @constructor
-    */
-    constructor() {
-      super();
-    }
 
   /** Создание элемента в DOM (DOM доступен) / mount @lifecycle
     * @param {ShadowRoot} node корневой узел элемента

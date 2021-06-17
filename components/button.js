@@ -93,6 +93,7 @@ const style = css`
   slot {
     display: block;
     position: relative;
+    font-family: var(--font);
   }
 
   :slotted(*) {

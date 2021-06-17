@@ -1,4 +1,6 @@
 import Component, { html, css } from '../script/Component.js';
+// eslint-disable-next-line no-unused-vars
+import UIText from './text.js';
 
 const style = css`
   :host {
@@ -16,7 +18,7 @@ const properties = {}
     static template = html`
       <template>
         <style>${style}</style>
-        &copy; <slot></slot>
+        <ui-text>&copy; <slot></slot></ui-text>
       </template>`;
 
   /** Создание компонента {UIText} @constructor

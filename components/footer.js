@@ -6,6 +6,7 @@ const properties = {};
 const style = css`
   :host {
     display: block;
+    text-align: center;
   }
   slot {
     display: block;

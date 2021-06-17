@@ -40,11 +40,12 @@ const style = css`
 
   /** Создание компонента {UINumeric} @constructor
     * @param {number} value устанавливаемое значение
+    * @param {string} label устанавливаемое значение
     */
-    constructor(value) {
+    constructor(value, label) {
       super();
-      if (value === undefined) return;
-      this.innerText = value;
+      if (value !== undefined) this.innerText = value;
+      if (label) this.label = label;
     }
 
   /** Создание элемента в DOM (DOM доступен) / mount @lifecycle
@@ -81,15 +82,16 @@ Component.init(UINumeric, 'ui-numeric', { attributes, properties });
  * @param {number} [precision=2] точность (знаков после запятой)
  * @param {string} [thousand=' '] разделитель разрядов
  * @param {string} [decimal=','] разделитель дробной части
+ * @param {boolean} showPositiveSign показывать знак + (если число положительное)
  * @return {string} форматированное число
  */
-  export function numeric(value, precision = 2, thousand = '.', decimal = ',') {
+  export function numeric(value, precision = 2, thousand = '.', decimal = ',', showPositiveSign = false) {
     /** @type {number} */
     const data = Number.parseFloat(value);
     if (Number.isNaN(data)) return '';
 
     /** @type {string} */
-    const integerReverse = Math.trunc(precision > 0 ? data : Math.round(data)).toString().split('').reverse().join('');
+    const integerReverse = Math.abs(Math.trunc(precision > 0 ? data : Math.round(data))).toString().split('').reverse().join('');
 
     /** @type {string} */
     const integer = [...(integerReverse.matchAll(/\d{1,3}/g))]
@@ -99,5 +101,6 @@ Component.init(UINumeric, 'ui-numeric', { attributes, properties });
 
     const fraction = precision > 0 ? Math.round(data * Math.pow(10, precision)).toString().slice(-precision) : '';
 
-    return precision > 0 ? integer + decimal + fraction : integer;
+    const string = precision > 0 ? integer + decimal + fraction.padEnd(precision, '0') : integer;
+    return (value < 0 ? '-' : showPositiveSign ? '+' : '') + string;
   }

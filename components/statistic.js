@@ -6,7 +6,10 @@ const attributes = {
     icon(root, value) { updateChildrenText(root, 'ui-icon', value); },
 
   /** / caption */
-    caption(root, value) { updateChildrenText(root, 'p', value); }
+    caption(root, value) { updateChildrenText(root, 'p', value); },
+
+  /** / mode */
+    mode() {}
 };
 const properties = {};
 

@@ -21,6 +21,11 @@ const style = css`
   }
   :host([left]) {
     text-align: left;
+  }
+  :host([no-wrap]) {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }`;
 
 const attributes = {}
