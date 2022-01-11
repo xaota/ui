@@ -3,6 +3,7 @@ import Component, { html, css } from '../script/Component.js';
 const style = css`
   :host {
     display: block;
+    height: 100%;
     font-family: var(--font);
     padding: 0;
     margin: 0;
@@ -14,10 +15,17 @@ const style = css`
   }`;
 
 const attributes = {
-  name() {},
-  caption() {}
-}
-const properties = {}
+  /** */
+    name() {},
+
+  /** */
+    caption() {}
+  }
+
+const properties = {
+  /** */
+    selected() {}
+  }
 
 /** {UITabsItem} @class
   * @description Отображение блока простого текста

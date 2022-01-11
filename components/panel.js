@@ -3,20 +3,38 @@ import Component, { html, css } from '../script/Component.js';
 const style = css`
   :host {
     --radius: 3px;
-
+    --panel-background: var(--background-panel);
+    --panel-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+    --panel-margin: 1em;
+  }
+  :host([outline="text"]) {
+    --panel-margin: 0;
+  }
+  :host {
     display: block;
-    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+    box-shadow: var(--panel-shadow);
     border: none;
     box-sizing: border-box;
     /* font-size: 1.1em; */
     font-weight: 100;
     outline: none;
     border-radius: var(--radius);
-    background: var(--background-panel);
+    background: var(--panel-background);
+    text-align: left;
+  }
+  :host([outline="text"]) {
+    background: none;
+    box-shadow: none;
+  }
+  :host([outline="text"][active]:hover) {
+    outline: 1px solid var(--color-edge);
   }
 
   :host([center]) {
     text-align: center;
+  }
+  :host([right]) {
+    text-align: right;
   }
 
   div.root {
@@ -35,12 +53,12 @@ const style = css`
 
   slot[name="top"] {
     margin-bottom: auto;
-    margin-top: 1em;
+    margin-top: var(--panel-margin);
   }
 
   slot[name="bottom"] {
     margin-top: auto;
-    margin-bottom: 1em;
+    margin-bottom: var(--panel-margin);
   }
 
   ::slotted(*) {

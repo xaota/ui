@@ -48,7 +48,7 @@ const properties = {}
 
   /** Создание элемента в DOM (DOM доступен) / mount @lifecycle
     * @param {ShadowRoot} node корневой узел элемента
-    * @return {UIIcon} @this
+    * @return {UIIcon} this
     */
     mount(node) {
       super.mount(node, attributes, properties);
@@ -82,7 +82,7 @@ Component.init(UIIcon, 'ui-icon', { attributes, properties });
 
     const fragment = document.createElement('template');
     fragment.innerHTML = SVG.trim();
-    const svg = fragment.content.firstChild;
+    const svg = fragment.content.firstChild; // querySelector('svg')
     svg.id = id;
     root.appendChild(svg);
     return svg;

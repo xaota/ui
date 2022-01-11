@@ -13,8 +13,13 @@ const style = css`
     flex-direction: row;
     justify-content: space-around;
     align-items: stretch;
-    flex-wrap: wrap;
     gap: var(--padding-showcase, 1rem);
+  }
+  :host(:not([nowrap])) slot {
+    flex-wrap: wrap;
+  }
+  :host([nowrap]) slot {
+    overflow-x: auto;
   }
   :host([align="left"]) slot {
     justify-content: left;
@@ -38,7 +43,7 @@ const style = css`
 
   /** Создание элемента в DOM (DOM доступен) / mount @lifecycle
     * @param {ShadowRoot} node корневой узел элемента
-    * @return {Showcase} @this текущий компонент
+    * @return {Showcase} #this текущий компонент
     */
     mount(node) {
       super.mount(node, attributes, properties);

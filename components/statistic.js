@@ -50,7 +50,7 @@ const style = css`
 
   /** Создание элемента в DOM (DOM доступен) / mount @lifecycle
     * @param {ShadowRoot} node корневой узел элемента
-    * @return {UIStatistic} @this текущий компонент
+    * @return {UIStatistic} #this текущий компонент
     */
     mount(node) {
       super.mount(node, attributes, properties);

@@ -31,7 +31,7 @@ const style = css`
 
   /** Создание элемента в DOM (DOM доступен) / mount @lifecycle
     * @param {ShadowRoot} node корневой узел элемента
-    * @return {UISkeleton} @this текущий компонент
+    * @return {UISkeleton} #this текущий компонент
     */
     mount(node) {
       super.mount(node, attributes, properties);

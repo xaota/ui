@@ -11,21 +11,21 @@ const properties = {};
 
 const style = css`
   :host {
-    display: block;
+    display: flex;
     border: 2px solid var(--color-edge);
     border-radius: var(--radius, 4px);
     padding: 0.4em;
     cursor: pointer;
     position: relative;
     box-sizing: border-box;
+    min-width: var(--showcase-item-width, auto);
   }
   :host(:hover) {
     border-color: var(--color-edge-accent);
   }
   slot {
     display: block;
-    height: 100%;
-    text-align: center;
+    margin: auto;
   }
   :host(:empty) slot {
     min-width: 1rem;
@@ -56,7 +56,7 @@ const style = css`
 
   /** Создание элемента в DOM (DOM доступен) / mount @lifecycle
     * @param {ShadowRoot} node корневой узел элемента
-    * @return {UIShowCase} @this текущий компонент
+    * @return {UIShowCase} #this текущий компонент
     */
     mount(node) {
       super.mount(node, attributes, properties);

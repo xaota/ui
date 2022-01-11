@@ -26,6 +26,13 @@ const style = css`
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+  }
+  slot {
+    color: var(--foreground);
+  }
+  ::slotted(a) {
+    color: var(--foreground);
+    text-decoration: none;
   }`;
 
 const attributes = {}

@@ -1,6 +1,5 @@
 import Component, { html, css } from '../script/Component.js';
 import { updateChildrenText } from '../script/DOM.js';
-import Deferred from 'javascript-toolbox/library/Deferred.js';
 import UIButton  from './button.js';
 // eslint-disable-next-line no-unused-vars
 import UICaption from './caption.js';
@@ -111,7 +110,13 @@ const properties = {}
       this.cache.root = root;
       this.cache.z = z;
 
-      this.promise = new Deferred();
+      // this.promise = new Deferred();
+      // @TODO:
+      const promise = new Promise((resolve, reject) => {
+        promise.resolve = resolve;
+        promise.reject  = reject;
+      });
+      this.promise = promise;
 
       this.splash = document.createElement('div'); // #ui-popup-splash
       const style = {

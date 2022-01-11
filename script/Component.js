@@ -105,6 +105,15 @@ const state = Symbol('state');
       return this;
     }
 
+  /** Специальный метод для обработки события роутинга / route
+    * @param {ShadowRoot} node ShadowRoot узел элемента
+    * @param {any} options параметры роутинга
+    * @return {Component} #this
+    */
+    route(node, options) {
+      return this;
+    }
+
   /** is @static */
     static is(component, ...constructors) { // Является ли узел элементом определенного класса
       if (typeof component !== 'object') component = document.createElement(component);
@@ -117,6 +126,7 @@ const state = Symbol('state');
   /** define @static */
     static async define(name, constructor, options = undefined) { // сохраняет привязку класса-компонента к html-тегу
       if (Component.exist(name)) return;
+      Object.defineProperty(constructor.prototype, 'tagName', { get: () => name, enumerable: false });
       window.customElements.define(name, constructor, options);
     }
 

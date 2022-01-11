@@ -1,6 +1,10 @@
 // @todo:
 
-/** */
+/** Поиск элементов
+  * @param {string|HTMLElement} selector селектор
+  * @param {HTMLElement|ShadowRoot} root область поиска
+  * @return {HTMLElement | null} найденный элемент
+  */
   export default function $(selector, root = document) {
     if (selector === root) return selector;
     return typeof selector === 'object'
@@ -74,7 +78,20 @@
   }
 
 /**
+  * @param {HTMLElement} node отслеживаемый узел
+  * @param {function(ResizeObserverEntry): void} callback функция обработчик
+  * @param {boolean} start запустить ли обсервер при установке
+  * @return {ResizeObserver} обсервер
   */
+  export function resizeObserve(node, callback, start = true) {
+    const resizeObserver = new ResizeObserver(entries => {
+      callback(entries[0]); // entries[0] is node
+    });
+    if (start) resizeObserver.observe(node);
+    return resizeObserver;
+  }
+
+/** */
   export function clear(node) {
     while (node.firstChild) node.firstChild.remove();
     return node;
@@ -92,7 +109,7 @@
     return value.trim();
   }
 
-/** */
+/** @TODO: вапилить в Material */
   export function pointerOffset(element, event) {
     const target = event.target;
     const root   = element.getBoundingClientRect();

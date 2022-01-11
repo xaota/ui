@@ -6,6 +6,13 @@ const style = css`
   :host {
     display: block;
     font-family: var(--font);
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  #root {
+    height: 40px;
   }
 
   #root > input[type="radio"] {
@@ -18,7 +25,7 @@ const style = css`
     font-weight: 100;
     outline: none;
     border-radius: var(--radius, 0);
-    margin-bottom: 0.4em;
+    /* margin-bottom: 0.4em; */
     padding: var(--padding-tabs, 0);
     border-bottom: 2px solid var(--color-edge);
   }
@@ -42,6 +49,12 @@ const style = css`
     padding-bottom: 6px;
     box-shadow: 0px 1px 18px 0px rgba(0,0,0,0.12);
     z-index: 1;
+  }
+
+  slot {
+    display: block;
+    margin: 0;
+    padding: 0;
   }
 
   ::slotted(ui-tabs-item) {
