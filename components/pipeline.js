@@ -4,6 +4,7 @@ import UIPipelineStage from './pipeline-stage.js';
 import UIBrick from './brick.js';
 
 const attributes = {
+/** */
   stage(root, value) {
     const stages = parseInt(value) || 0;
     manage.call(this, root, stages);
@@ -82,6 +83,7 @@ const style = css`
 Component.init(UIPipeline, 'ui-pipeline', { attributes, properties });
 
 // #region [Private]
+/** */
 function manage(root, stages) {
   const div = $('div', root);
   if (!div) return;
@@ -94,6 +96,7 @@ function manage(root, stages) {
   manageBricks.call(this, root);
 }
 
+/** */
 function manageConnections(node) {
   const canvas = $('canvas', node);
   if (!canvas) return;
@@ -140,6 +143,7 @@ function manageConnections(node) {
   context.closePath();
 }
 
+/** */
 function manageBricks(node) {
   const slot = $('slot', node);
   const div  = $('div', node);
@@ -166,7 +170,7 @@ function manageBricks(node) {
 
   manageConnections.call(this, node);
 }
-
+/** */
 function getGroups(node, rect) {
   const div = $('div', node);
   if (!div) return;

@@ -16,13 +16,26 @@ const properties = {};
 
 const style = css`
   :host {
+    --grid-padding-default: 40px;
+
     --grid-width: auto;
     --grid-height: auto;
-    --grid-padding: 40px;
-    --grid-gap: 0;
+    --grid-gap: 4px;
     --grid-columns: 1fr;
+    --grid-padding: var(--grid-padding-default);
   }
-  :host, main, slot {
+  :host([thin]) {
+    --grid-padding: 0;
+  }
+  :host([thin="top"]) {
+    --grid-padding-top: 0;
+    --grid-padding: var(--grid-padding-default);
+  }
+  :host([thin="bottom"]) {
+    --grid-padding-bottom: 0;
+    --grid-padding: var(--grid-padding-default);
+  }
+  :host, main {
     display: block;
   }
   main {
@@ -33,7 +46,8 @@ const style = css`
     margin: 0 auto;
     width: var(--grid-width);
     height: var(--grid-height);
-    padding: var(--grid-padding);
+    padding-top: var(--grid-padding-top, var(--grid-padding));
+    padding-bottom: var(--grid-padding-bottom, var(--grid-padding));
     gap: var(--grid-gap);
     grid-template-columns: var(--grid-columns);
   }`;

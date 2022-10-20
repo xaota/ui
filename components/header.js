@@ -19,6 +19,10 @@ const style = css`
   }
   slot[name="navigation"]::slotted(ui-navigation) {
     height: 100%;
+  }
+  ::slotted(ui-caption) {
+    margin-top: 0;
+    margin-bottom: 0;
   }`;
 
 /** Header {UIHeader} @class @ui @component <ui-header />

@@ -71,8 +71,8 @@
 /** */
   export function cssVariable(selector, name, value, root = document) {
     const element = $(selector, root);
-    if (!element) return;
-    if (name.charAt(0) !== '-') name = '--' + name;
+    if (!element) return; // throw new Error("no element");
+    if (!name.startsWith('--')) name = '--' + name;
     if (value) element.style.setProperty(name, value);
     return getComputedStyle(element).getPropertyValue(name);
   }
@@ -92,8 +92,12 @@
   }
 
 /** */
-  export function clear(node) {
-    while (node.firstChild) node.firstChild.remove();
+  export function clear(node, selector) {
+    if (!selector) {
+      while (node.firstChild) node.firstChild.remove();
+    } else {
+      node.querySelectorAll(selector).forEach(e => e.remove());
+    }
     return node;
   }
 

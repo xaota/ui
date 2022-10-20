@@ -30,6 +30,9 @@ const style = css`
     display: inline-block;
     --link-border-style: solid;
   }
+  :host([block]) {
+    display: block;
+  }
   :host([blank]) {
     --link-border-style: dashed;
   }
@@ -79,13 +82,15 @@ const style = css`
         <a><span></span></a>
       </template>`;
 
-  // /** Создание компонента {UILink} @constructor
-  //   * @param {type} store param-description
-  //   */
-  //   constructor(store) {
-  //     super();
-  //     this.store({ store });
-  //   }
+  /** Создание компонента {UILink} @constructor
+    * @param {string} text название ссылки
+    * @param {string} href адрес ссылки
+    */
+    constructor(text, href) {
+      super();
+      if (text) this.innerText = text;
+      if (href) this.setAttribute('href', href);
+    }
 
   /** Создание элемента в DOM (DOM доступен) / mount @lifecycle
     * @param {ShadowRoot} node корневой узел элемента
@@ -96,6 +101,7 @@ const style = css`
 
       /** @type {HTMLSlotElement} */
       const slot = $('slot', node);
+
       slot.addEventListener('slotchange', () => {
         const text = slottedValue(slot);
         updateChildrenText(node, 'a span', text);

@@ -1,17 +1,21 @@
-function raw(strings) {
-  return String.raw(...strings).trim();
-}
+/** */
+  function raw(strings) {
+    return String.raw(...strings).trim();
+  }
 
-export function html(...args) {
-  return new DOMParser()
-    .parseFromString(raw(args), 'text/html')
-    .getElementsByTagName('template')[0];
-};
+/** */
+  export function html(...args) {
+    return new DOMParser()
+      .parseFromString(raw(args), 'text/html')
+      .getElementsByTagName('template')[0];
+  };
 
-export function css(...args) {
-  return raw(args);
-};
+/** */
+  export function css(...args) {
+    return raw(args);
+  };
 
-export function url(url, base = import.meta.url) {
-  return new URL(url, base).href;
-}
+/** */
+  export function url(url, base = import.meta.url) {
+    return new URL(url, base).href;
+  }

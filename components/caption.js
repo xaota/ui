@@ -6,12 +6,17 @@ const style = css`
     font-size: 24px;
     font-family: var(--font);
     font-weight: 300;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
   }
   :host([size="small"]) {
     font-size: 18px;
   }
   :host([size="large"]) {
     font-size: 30px;
+  }
+  :host([size="header"]) {
+    font-size: 48px;
   }
   :host([center]) {
     text-align: center;

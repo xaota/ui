@@ -65,11 +65,19 @@ const style = css`
     /*
     font-size: 18px;
     */
-    margin: .5em .3em;
+    margin: 1em .3em;
     text-decoration: none;
     font-family: var(--font);
     display: block;
     color: var(--color-primary-dark);
+  }
+
+  ::slotted(*:first-child) {
+    margin-top: 0;
+  }
+
+  ::slotted(*:last-child) {
+    margin-bottom: 0;
   }
 
   ::slotted(ui-fieldset) {
